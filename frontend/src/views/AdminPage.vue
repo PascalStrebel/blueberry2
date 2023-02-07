@@ -15,7 +15,7 @@
       <ion-grid :fixed="true">
         <ion-row>
           <ion-col> <ion-button>Edit Children</ion-button></ion-col>
-          <ion-col><ion-button>Edit Obseravation</ion-button> </ion-col>
+          <ion-col><ion-button router-link="/tabs/create/observation">Edit Observation</ion-button> </ion-col>
         </ion-row>
       </ion-grid>
 

@@ -35,6 +35,9 @@ const routes: Array<RouteRecordRaw> = [
       },      {
         path: 'adminpage',
         component: () => import('@/views/AdminPage.vue')
+      },      {
+        path: 'create/observation',
+        component: () => import('@/views/CreateObservation.vue')
       },
       {
         path: 'timerecord',
