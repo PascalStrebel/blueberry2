@@ -1,21 +1,33 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Projects</ion-title>
-      </ion-toolbar>
-    </ion-header>
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Projects</ion-title>
-        </ion-toolbar>
-      </ion-header>
+    <div>
+      <PageDefaultHeader />
+    </div>
+
+    <ion-content class="ion-padding">
+      <h1>Content</h1>
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{}}</ion-card-title>
+          <ion-card-subtitle>{{}}</ion-card-subtitle>
+        </ion-card-header>
+
+        <ion-card-content>
+          Here's a small text description for the card content. Nothing more,
+          nothing less.
+        </ion-card-content>
+      </ion-card>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
-import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent } from '@ionic/vue';
-
+import PageDefaultHeader from '@/components/PageDefaultHeader.vue';
+import {
+  IonPage,
+  IonHeader,
+  IonToolbar,
+  IonTitle,
+  IonContent,
+} from '@ionic/vue';
 </script>
