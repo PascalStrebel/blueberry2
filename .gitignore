@@ -46,3 +46,8 @@ Thumbs.db
 frontend/UserInterfaceState.xcuserstate
 .vscode
 
+
+.idea
+*.iml
+.angular
+
