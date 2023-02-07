@@ -50,4 +50,4 @@ frontend/UserInterfaceState.xcuserstate
 .idea
 *.iml
 .angular
-
+*.db
