@@ -17,7 +17,7 @@
           <ion-col> 
             <ion-button expand="block" router-link="editchildren">Edit Children</ion-button></ion-col>
           <ion-col>
-            <ion-button expand="block">Edit Obseravation</ion-button> </ion-col>
+            <ion-button expand="block" router-link="create/observation">Edit Obseravation</ion-button> </ion-col>
         </ion-row>
       </ion-grid>
     </ion-content>
