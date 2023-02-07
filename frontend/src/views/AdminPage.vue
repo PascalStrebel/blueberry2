@@ -21,12 +21,16 @@
 
 
 
+
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
 import {
+  IonGrid,
+  IonRow,
+  IonCol,
   IonButton,
   IonPage,
   IonHeader,
@@ -35,17 +39,16 @@ import {
   IonContent,
 } from "@ionic/vue";
 
+  import { defineComponent } from 'vue';
+
 
 </script>
 
 
-<style>
+<style scoped>
   ion-col {
-    background-color: #135d54;
-    border: solid 1px #fff;
     color: #fff;
     text-align: center;
+    
   }
 </style>
-
-

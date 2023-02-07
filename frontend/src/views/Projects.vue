@@ -22,7 +22,6 @@
 </template>
 
 <script setup lang="ts">
-import PageDefaultHeader from '@/components/PageDefaultHeader.vue';
 import {
   IonPage,
   IonHeader,
