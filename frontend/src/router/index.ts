@@ -3,6 +3,7 @@ import { RouteRecordRaw } from 'vue-router';
 import Tabs from '../views/Tabs.vue'
 import Login from '../views/Login.vue'
 import UserOverview from '../views/UserOverview.vue'
+import AdminPage from '../views/AdminPage.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -31,6 +32,9 @@ const routes: Array<RouteRecordRaw> = [
       },      {
         path: 'useroverview',
         component: () => import('@/views/UserOverview.vue')
+      },      {
+        path: 'adminpage',
+        component: () => import('@/views/AdminPage.vue')
       },
       {
         path: 'timerecord',

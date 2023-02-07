@@ -7,19 +7,25 @@
           <ion-icon :icon="flash" />
           <ion-label>Todo</ion-label>
         </ion-tab-button>
-          
+
         <ion-tab-button tab="projects" href="/tabs/projects">
           <ion-icon :icon="apps" />
           <ion-label>Projects</ion-label>
         </ion-tab-button>
-        
+
         <ion-tab-button tab="timerecord" href="/tabs/timerecord">
           <ion-icon :icon="send" />
           <ion-label>Timerecord</ion-label>
         </ion-tab-button>
-          <ion-tab-button tab="useroverview" href="/tabs/useroverview">
+
+        <ion-tab-button tab="useroverview" href="/tabs/useroverview">
           <ion-icon :icon="person" />
           <ion-label>User Overview</ion-label>
+        </ion-tab-button>
+
+        <ion-tab-button tab="adminpage" href="/tabs/adminpage">
+          <ion-icon :icon="person" />
+          <ion-label>Admin Page</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
@@ -27,6 +33,14 @@
 </template>
 
 <script setup lang="ts">
-import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
-import { flash, apps, person, send } from 'ionicons/icons';
+import {
+  IonTabBar,
+  IonTabButton,
+  IonTabs,
+  IonLabel,
+  IonIcon,
+  IonPage,
+  IonRouterOutlet,
+} from "@ionic/vue";
+import { flash, apps, person, send } from "ionicons/icons";
 </script>
