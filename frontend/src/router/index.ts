@@ -4,6 +4,7 @@ import Tabs from '../views/Tabs.vue'
 import Login from '../views/Login.vue'
 import UserOverview from '../views/UserOverview.vue'
 import AdminPage from '../views/AdminPage.vue'
+import EditChildren from '../views/EditChildren.vue'
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -29,12 +30,15 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'projects',
         component: () => import('@/views/Projects.vue')
-      },      {
+      }, {
         path: 'useroverview',
         component: () => import('@/views/UserOverview.vue')
-      },      {
+      }, {
         path: 'adminpage',
         component: () => import('@/views/AdminPage.vue')
+      }, {
+        path: 'editchildren',
+        component: () => import('@/views/EditChildren.vue')
       },
       {
         path: 'timerecord',

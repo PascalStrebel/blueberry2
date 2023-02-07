@@ -14,14 +14,12 @@
 
       <ion-grid :fixed="true">
         <ion-row>
-          <ion-col> <ion-button>Edit Children</ion-button></ion-col>
-          <ion-col><ion-button>Edit Obseravation</ion-button> </ion-col>
+          <ion-col> 
+            <ion-button expand="block" router-link="editchildren">Edit Children</ion-button></ion-col>
+          <ion-col>
+            <ion-button expand="block">Edit Obseravation</ion-button> </ion-col>
         </ion-row>
       </ion-grid>
-
-
-
-
     </ion-content>
   </ion-page>
 </template>
@@ -39,16 +37,13 @@ import {
   IonContent,
 } from "@ionic/vue";
 
-  import { defineComponent } from 'vue';
-
-
+import { defineComponent } from "vue";
 </script>
 
 
 <style scoped>
-  ion-col {
-    color: #fff;
-    text-align: center;
-    
-  }
+ion-col {
+  color: #fff;
+  text-align: center;
+}
 </style>
