@@ -22,13 +22,14 @@ public class TokenCookieAuthSecurityConfigAPI {
     @Order(1)
     public SecurityFilterChain filterChainApi(HttpSecurity http) throws Exception {
         http.csrf().disable();
-        http.antMatcher("/api/**")
+        /*http.antMatcher("/api/**")
             .addFilterBefore(new TokenAuthenticationFilter(secret), UsernamePasswordAuthenticationFilter.class)
             .sessionManagement().sessionCreationPolicy(SessionCreationPolicy.STATELESS).and()
             .httpBasic().disable()
             .authorizeRequests()
             .antMatchers(HttpMethod.OPTIONS,"/api/**").permitAll()
-            .anyRequest().authenticated();   
+            .anyRequest().authenticated();   */
+        http.authorizeRequests().antMatchers("/api*").permitAll();
         return http.build();     
     }   
     

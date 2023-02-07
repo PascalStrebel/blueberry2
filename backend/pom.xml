@@ -83,7 +83,7 @@
                 </executions>
                 <configuration>
                     <jsonLibrary>jackson2</jsonLibrary>
-                    <classPatterns>ch.zhaw.blueberry.entities.**</classPatterns>
+                    <classPatterns>ch.zhaw.blueberry2.entity.**</classPatterns>
                     <outputKind>module</outputKind>
                     <outputFileType>implementationFile</outputFileType>
                     <outputFile>../frontend/src/model/model.ts</outputFile>
