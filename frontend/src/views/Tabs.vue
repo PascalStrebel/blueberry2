@@ -17,6 +17,10 @@
           <ion-icon :icon="send" />
           <ion-label>Timerecord</ion-label>
         </ion-tab-button>
+          <ion-tab-button tab="useroverview" href="/tabs/useroverview">
+          <ion-icon :icon="person" />
+          <ion-label>User Overview</ion-label>
+        </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
   </ion-page>
@@ -24,5 +28,5 @@
 
 <script setup lang="ts">
 import { IonTabBar, IonTabButton, IonTabs, IonLabel, IonIcon, IonPage, IonRouterOutlet } from '@ionic/vue';
-import { flash, apps, send } from 'ionicons/icons';
+import { flash, apps, person, send } from 'ionicons/icons';
 </script>
