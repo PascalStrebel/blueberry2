@@ -29,7 +29,9 @@ public class TokenCookieAuthSecurityConfigAPI {
             .authorizeRequests()
             .antMatchers(HttpMethod.OPTIONS,"/api/**").permitAll()
             .anyRequest().authenticated();   */
-        http.authorizeRequests().antMatchers("/api*").permitAll();
+        http.authorizeRequests().antMatchers("/*").permitAll();
+        http.csrf().disable();
+        http.headers().frameOptions().disable();
         return http.build();     
     }   
     

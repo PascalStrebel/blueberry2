@@ -1,8 +1,8 @@
 delete from child_observation;
-delete from person;
+delete from child;
 delete from observation;
 
-INSERT INTO person (dtype, id, birthdate, entry_date, first_name, gender, name, nationality) VALUES ('child', 1, '2023-02-01', '2023-02-01', 'Ich', 1, 'Nicht', 'CH');
+INSERT INTO child (id, birthdate, entry_date, first_name, gender, name, nationality) VALUES (1, '2023-02-01', '2023-02-01', 'Ich', 1, 'Nicht', 'CH');
 
 INSERT INTO observation (id, category, expected_at_months, text) VALUES (1, 'Movement', 36, 'Can ride a tricycle');
 INSERT INTO observation (id, category, expected_at_months, text) VALUES (2, 'Movement', 36, 'Can jump off with both legs');
