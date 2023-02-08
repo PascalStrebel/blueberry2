@@ -1,10 +1,6 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Admin Page</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <PageDefaultHeader myTitle="Blueberry Settings" />
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
@@ -14,10 +10,16 @@
 
       <ion-grid :fixed="true">
         <ion-row>
-          <ion-col> 
-            <ion-button expand="block" router-link="editchildren">Edit Children</ion-button></ion-col>
           <ion-col>
-            <ion-button expand="block" router-link="create/observation">Edit Obseravation</ion-button> </ion-col>
+            <ion-button expand="block" router-link="editchildren"
+              >Edit Children</ion-button
+            ></ion-col
+          >
+          <ion-col>
+            <ion-button expand="block" router-link="create/observation"
+              >Edit Obseravation</ion-button
+            >
+          </ion-col>
         </ion-row>
       </ion-grid>
     </ion-content>
@@ -25,6 +27,7 @@
 </template>
 
 <script setup lang="ts">
+import PageDefaultHeader from '@/components/PageDefaultHeader.vue';
 import {
   IonGrid,
   IonRow,
@@ -35,11 +38,10 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
-} from "@ionic/vue";
+} from '@ionic/vue';
 
-import { defineComponent } from "vue";
+import { defineComponent } from 'vue';
 </script>
-
 
 <style scoped>
 ion-col {

@@ -1,31 +1,34 @@
 <template>
   <ion-page>
-    <div>
-      <PageDefaultHeader myTitle="Blueberry" />
-    </div>
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Blueberry Children</ion-title>
+      </ion-toolbar>
+      <ion-toolbar>
+        <ion-searchbar placeholder="Search Blueberry.."></ion-searchbar>
+      </ion-toolbar>
+    </ion-header>
     <ion-content class="ion-padding">
       <h1>Content</h1>
-      <div>
-        <ion-card
-          :router-link="'/tabs/children/' + child.id"
-          :key="child.id"
-          v-for="child in children"
-        >
-          <ion-card-header>
-            <ion-card-title>
-              {{ child.firstName }} {{ child.name }}
-            </ion-card-title>
-            <ion-card-subtitle>
-              {{ child.birthdate }}
-            </ion-card-subtitle>
-          </ion-card-header>
+      <ion-card
+        :router-link="'/tabs/children/' + child.id"
+        :key="child.id"
+        v-for="child in children"
+      >
+        <ion-card-header>
+          <ion-card-title>
+            {{ child.firstName }} {{ child.name }}
+          </ion-card-title>
+          <ion-card-subtitle>
+            {{ child.birthdate }}
+          </ion-card-subtitle>
+        </ion-card-header>
 
-          <ion-card-content>
-            Here's a small text description for the card content. Nothing more,
-            nothing less.
-          </ion-card-content>
-        </ion-card>
-      </div>
+        <ion-card-content>
+          Here's a small text description for the card content. Nothing more,
+          nothing less.
+        </ion-card-content>
+      </ion-card>
     </ion-content>
   </ion-page>
 </template>
@@ -36,6 +39,10 @@ import { onMounted } from '@vue/runtime-core';
 import { getChildren } from '@/api/backend';
 import { Child } from '@/model/model';
 import {
+  IonToolbar,
+  IonSearchbar,
+  IonTitle,
+  IonHeader,
   IonCard,
   IonCardContent,
   IonCardHeader,
@@ -57,5 +64,16 @@ onMounted(async () => {
 ion-card-header.ios {
   display: flex;
   flex-flow: column-reverse;
+}
+
+ion-card {
+  width: 30%;
+  display: inline-block;
+}
+@media (max-width: 768px) {
+  ion-card {
+    width: 100%;
+    display: block;
+  }
 }
 </style>

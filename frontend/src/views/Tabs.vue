@@ -3,29 +3,19 @@
     <ion-tabs>
       <ion-router-outlet></ion-router-outlet>
       <ion-tab-bar slot="bottom">
-        <ion-tab-button tab="todo" href="/tabs/todo">
-          <ion-icon :icon="flash" />
-          <ion-label>Todo</ion-label>
+        <ion-tab-button tab="home" href="/tabs/home">
+          <ion-icon :icon="home" />
+          <ion-label>Home</ion-label>
         </ion-tab-button>
 
         <ion-tab-button tab="children" href="/tabs/children">
-          <ion-icon :icon="person" />
+          <ion-icon :icon="flower" />
           <ion-label>Children</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="timerecord" href="/tabs/timerecord">
-          <ion-icon :icon="send" />
-          <ion-label>Timerecord</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button tab="useroverview" href="/tabs/useroverview">
-          <ion-icon :icon="person" />
-          <ion-label>User Overview</ion-label>
-        </ion-tab-button>
-
-        <ion-tab-button tab="adminpage" href="/tabs/adminpage">
-          <ion-icon :icon="person" />
-          <ion-label>Admin Page</ion-label>
+        <ion-tab-button tab="settings" href="/tabs/settings">
+          <ion-icon :icon="cog" />
+          <ion-label>Settings</ion-label>
         </ion-tab-button>
       </ion-tab-bar>
     </ion-tabs>
@@ -42,5 +32,5 @@ import {
   IonPage,
   IonRouterOutlet,
 } from '@ionic/vue';
-import { flash, apps, person, send } from 'ionicons/icons';
+import { flower, cog, home } from 'ionicons/icons';
 </script>

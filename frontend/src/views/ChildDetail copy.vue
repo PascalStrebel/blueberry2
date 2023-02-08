@@ -19,65 +19,44 @@
       <ion-accordion-group>
         <ion-accordion v-for="category in categories" :key="category">
           <ion-item slot="header" color="light">
-            <ion-label
-              ><ion-icon slot="start" :icon="star"></ion-icon
-              >{{
-                ` ${category} (${getChildObservationPercent(category)})`
-              }}</ion-label
-            >
+            <ion-label>{{
+              ` ${category} (${getChildObservationPercent(category)})`
+            }}</ion-label>
           </ion-item>
+
           <ion-item
             v-for="observation in observations.filter(
               (obs) => obs.category === category
             )"
             class="ion-padding"
             slot="content"
-            ><p>
-              <ion-label slot="start" position="stacked">{{
-                observation.text
-              }}</ion-label>
-            </p>
-            <p>
-              <ion-button
-                size="small"
-                @click="updateCompletionId(observation.id)"
-                :disabled="observationCompleted(observation)"
-                ><ion-icon slot="start" :icon="create"></ion-icon>
-                Edit
-              </ion-button>
-            </p>
+          >
+            <ion-label position="stacked">{{ observation.text }}</ion-label>
+            <ion-button
+              @click="updateCompletionId(observation.id)"
+              :disabled="observationCompleted(observation)"
+            >
+              Complete
+            </ion-button>
 
             <div v-if="completeId === observation.id">
               <ion-item class="ion-padding" slot="content">
-                <ion-select
-                  interface="popover"
-                  placeholder="Select Points"
-                  v-model="points"
-                >
-                  <ion-select-option value="0"
-                    >0 - Not there yet</ion-select-option
-                  >
-                  <ion-select-option value="1"
-                    >50% - Partially doing it</ion-select-option
-                  >
-                  <ion-select-option value="2"
-                    >100% - Yes. Passed!!</ion-select-option
-                  >
+                <ion-select placeholder="Select Points" v-model="points">
+                  <ion-select-option value="0">Incomplete</ion-select-option>
+                  <ion-select-option value="1">Partially</ion-select-option>
+                  <ion-select-option value="2">Complete</ion-select-option>
                 </ion-select>
               </ion-item>
               <ion-item>
                 <ion-label position="stacked">Comment</ion-label>
-                <ion-input
-                  v-model="comment"
-                  placeholder="write a comment here"
-                ></ion-input>
+                <ion-input v-model="comment"></ion-input>
               </ion-item>
               <ion-button
                 @click="
                   completeObservation(child, observation, points, comment)
                 "
-                ><ion-icon slot="start" :icon="save"></ion-icon>
-                Save
+              >
+                OK
               </ion-button>
             </div>
           </ion-item>
@@ -98,11 +77,7 @@ import {
 } from '@/api/backend';
 import { Child, ChildObservation, Observation } from '@/model/model';
 import { defineComponent } from 'vue';
-import { create, save, star } from 'ionicons/icons';
 import {
-  IonRadio,
-  IonRadioGroup,
-  IonIcon,
   IonGrid,
   IonRow,
   IonCol,
@@ -198,34 +173,5 @@ function observationCompleted(observation: Observation): boolean {
 ion-card-header.ios {
   display: flex;
   flex-flow: column-reverse;
-}
-
-ion-select {
-  --padding-start: -30px;
-  --placeholder-color: ;
-  --placeholder-opacity: 1;
-  --width: 100%;
-  justify-content: center;
-}
-
-ion-select::part(placeholder),
-ion-select::part(text) {
-  font-size: 15px;
-  font-weight: 400;
-  flex: 0 0 auto;
-}
-
-ion-select::part(placeholder)::first-letter {
-  font-size: 15px;
-  font-weight: 400;
-}
-
-ion-select::part(text) {
-  color: ;
-}
-
-ion-select::part(icon) {
-  color: #e9dd2f;
-  opacity: 1;
 }
 </style>

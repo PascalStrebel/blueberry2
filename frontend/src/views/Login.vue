@@ -9,14 +9,25 @@
             </div>
             <div padding>
               <ion-item>
-                <ion-input type="text" placeholder="Login Name" v-model="username"></ion-input>
+                <ion-input
+                  type="text"
+                  placeholder="Login Name"
+                  v-model="username"
+                ></ion-input>
               </ion-item>
               <ion-item>
-                <ion-input type="password" placeholder="Password" v-model="password"></ion-input>
+                <ion-input
+                  type="password"
+                  placeholder="Password"
+                  v-model="password"
+                  @keyup.enter="login"
+                ></ion-input>
               </ion-item>
             </div>
             <div padding>
-              <ion-button size="large" @click="login" expand="block">Login</ion-button>
+              <ion-button size="large" @click="login" expand="block"
+                >Login</ion-button
+              >
             </div>
           </ion-col>
         </ion-row>
@@ -35,9 +46,8 @@ import {
   IonGrid,
   IonButton,
   IonItem,
-} from "@ionic/vue";
-import { useLogin } from "../composables/useLogin";
+} from '@ionic/vue';
+import { useLogin } from '../composables/useLogin';
 
 const { username, password, login } = useLogin();
-
 </script>

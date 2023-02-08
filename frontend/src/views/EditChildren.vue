@@ -2,15 +2,10 @@
   <ion-page>
     <ion-header>
       <ion-toolbar>
-        <ion-title>Children</ion-title>
+        <ion-title>Blueberry Settings / Edit Children</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content :fullscreen="true">
-      <ion-header collapse="condense">
-        <ion-toolbar>
-          <ion-title size="large">Children</ion-title>
-        </ion-toolbar>
-      </ion-header>
+    <ion-content>
       <ion-list>
         <ion-item
           class="ion-padding"
@@ -20,24 +15,26 @@
         >
           <ion-label>{{ child.name }} {{ child.firstName }}</ion-label>
           <ion-label>{{ child.birthdate }}</ion-label>
-          <ion-label
-            ><ion-tab-button tab="edit" @click="editSpecificChild(child)">
+          <ion-label>
+            <ion-tab-button tab="edit" @click="editSpecificChild(child)">
               <ion-icon :icon="pencil" />
             </ion-tab-button>
           </ion-label>
           <ion-label>
             <ion-tab-button
-              @click="() => deleteSpecificChild(child.id, child.name, child.firstName)"
+              @click="
+                deleteSpecificChild(child.id, child.name, child.firstName)
+              "
             >
               <ion-icon :icon="trash" />
             </ion-tab-button>
           </ion-label>
         </ion-item>
       </ion-list>
-    </ion-content>
 
-    <ion-content class="ion-padding">
-      <ion-button class="modalbutton" id="open-modal" expand="block">Add a new child</ion-button>
+      <ion-button class="modalbutton" id="open-modal" expand="block">
+        Add a new child
+      </ion-button>
       <ion-modal ref="modal" trigger="open-modal">
         <ion-header>
           <ion-toolbar>
@@ -46,56 +43,50 @@
             </ion-buttons>
             <ion-title>Child properties</ion-title>
             <ion-buttons slot="end">
-              <ion-button :strong="true" @click="createANewChild">Confirm</ion-button>
+              <ion-button :strong="true" @click="createANewChild">
+                Confirm
+              </ion-button>
             </ion-buttons>
           </ion-toolbar>
         </ion-header>
-        <ion-content class="ion-padding">
-          <ion-item>
-            <ion-label position="stacked">Surname</ion-label>
-            <ion-input v-model="children.name" required=true></ion-input>
-          </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Surname</ion-label>
+          <ion-input v-model="children.name" required="true" />
+        </ion-item>
 
-          <ion-item>
-            <ion-label position="stacked">Firstname</ion-label>
-            <ion-input v-model="children.firstName" required></ion-input>
-          </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Firstname</ion-label>
+          <ion-input v-model="children.firstName" required />
+        </ion-item>
 
-          <ion-item>
-            <ion-label position="stacked">Birthdate</ion-label>
-            <ion-input
-              type="date"
-              v-model="children.birthdate"
-              required
-            ></ion-input>
-          </ion-item>
-
-          <ion-item>
-            <ion-select
-              placeholder="Select Gender"
-              v-model="children.gender"
-              required
-            >
-              <ion-select-option value="M">Male</ion-select-option>
-              <ion-select-option value="W">Female</ion-select-option>
-              <ion-select-option value="D">Divers</ion-select-option>
-            </ion-select>
-          </ion-item>
-
-          <ion-item class="ion-padding" slot="content">
-            <ion-label position="stacked">Nationality</ion-label>
-
-            <ion-input v-model="children.nationality" required />
-          </ion-item>
-          <ion-item>
-            <ion-label position="stacked">Entry Date</ion-label>
-            <ion-input
-              type="date"
-              v-model="children.entryDate"
-              required
-            ></ion-input>
-          </ion-item>
-        </ion-content>
+        <ion-item>
+          <ion-label position="stacked">Birthdate</ion-label>
+          <ion-input type="date" v-model="children.birthdate" required />
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Gender</ion-label>
+          <ion-select
+            placeholder="Select Gender"
+            v-model="children.gender"
+            required
+          >
+            <ion-select-option value="M">Male</ion-select-option>
+            <ion-select-option value="W">Female</ion-select-option>
+            <ion-select-option value="D">Divers</ion-select-option>
+          </ion-select>
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Nationality</ion-label>
+          <ion-input v-model="children.nationality" required />
+        </ion-item>
+        <ion-item>
+          <ion-label position="stacked">Entry Date</ion-label>
+          <ion-input
+            type="date"
+            v-model="children.entryDate"
+            required
+          ></ion-input>
+        </ion-item>
       </ion-modal>
     </ion-content>
   </ion-page>
@@ -119,18 +110,18 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
-} from "@ionic/vue";
-import { pencil, trash } from "ionicons/icons";
+} from '@ionic/vue';
+import { pencil, trash } from 'ionicons/icons';
 
-import { Child } from "../model/model";
-import { createChild } from "../api/backend";
-import { ref } from "vue";
-import { onMounted } from "@vue/runtime-core";
-import { getChildren } from "../api/backend";
-import { deleteChild } from "../api/backend";
-import { IonSelectOption, alertController } from "@ionic/vue";
-import { OverlayEventDetail } from "@ionic/core/components";
-import { defineComponent } from "vue";
+import { Child } from '../model/model';
+import { createChild } from '../api/backend';
+import { ref } from 'vue';
+import { onMounted } from '@vue/runtime-core';
+import { getChildren } from '../api/backend';
+import { deleteChild } from '../api/backend';
+import { IonSelectOption, alertController } from '@ionic/vue';
+import { OverlayEventDetail } from '@ionic/core/components';
+import { defineComponent } from 'vue';
 
 let children = {} as Child;
 
@@ -144,22 +135,26 @@ onMounted(async () => {
   existingChildren.value = await getChildren();
 });
 
-const handlerMessage = ref("");
+const handlerMessage = ref('');
 
-const deleteSpecificChild = async (id: number, name: string, firstname: string) => {
+const deleteSpecificChild = async (
+  id: number,
+  name: string,
+  firstname: string
+) => {
   const alert = await alertController.create({
-    header: "You sure you wanna delete " + name + " " + firstname + " ?",
+    header: 'You sure you wanna delete ' + name + ' ' + firstname + ' ?',
     buttons: [
       {
-        text: "Cancel",
-        role: "cancel",
+        text: 'Cancel',
+        role: 'cancel',
         handler: () => {},
       },
       {
-        text: "Delete",
-        role: "confirm",
+        text: 'Delete',
+        role: 'confirm',
         handler: () => {
-          handlerMessage.value = "Alert confirmed";
+          handlerMessage.value = 'Alert confirmed';
           deleteChild(id);
           document.location.reload();
         },
@@ -170,21 +165,26 @@ const deleteSpecificChild = async (id: number, name: string, firstname: string) 
   await alert.present();
 };
 
-
-
-
 function editSpecificChild(child: Child) {
   children = child;
- //alert("Value 1: " + children.name + "\nValue 2: " + children.firstName);
+  //alert("Value 1: " + children.name + "\nValue 2: " + children.firstName);
 
-let element: HTMLElement = document.getElementsByClassName('modalbutton')[0] as HTMLElement;
-element.click();
-
+  let element: HTMLElement = document.getElementsByClassName(
+    'modalbutton'
+  )[0] as HTMLElement;
+  element.click();
 }
-
 
 function cancel() {
   document.location.reload();
 }
-
 </script>
+<style scoped>
+ion-modal {
+  --width: fit-content;
+  --min-width: 250px;
+  --height: fit-content;
+  --border-radius: 6px;
+  --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
+}
+</style>

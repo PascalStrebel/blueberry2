@@ -3,8 +3,8 @@ import { RouteRecordRaw } from 'vue-router';
 import Tabs from '../views/Tabs.vue';
 import Login from '../views/Login.vue';
 import Children from '../views/Children.vue';
-import UserOverview from '../views/UserOverview.vue';
-import AdminPage from '../views/AdminPage.vue';
+import UserOverview from '../views/HomePage.vue';
+import Settings from '../views/SettingsPage.vue';
 import EditChildren from '../views/EditChildren.vue';
 import ChildDetail from '../views/ChildDetail.vue';
 
@@ -23,11 +23,11 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: '',
-        redirect: '/tabs/tab1',
+        redirect: '/tabs/home',
       },
       {
-        path: 'todo',
-        component: () => import('@/views/Todo.vue'),
+        path: 'home',
+        component: () => import('@/views/HomePage.vue'),
       },
       {
         path: 'children',
@@ -38,12 +38,8 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/ChildDetail.vue'),
       },
       {
-        path: 'useroverview',
-        component: () => import('@/views/UserOverview.vue'),
-      },
-      {
-        path: 'adminpage',
-        component: () => import('@/views/AdminPage.vue'),
+        path: 'settings',
+        component: () => import('@/views/SettingsPage.vue'),
       },
       {
         path: 'create/observation',
@@ -52,10 +48,6 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'editchildren',
         component: () => import('@/views/EditChildren.vue'),
-      },
-      {
-        path: 'timerecord',
-        component: () => import('@/views/Timerecord.vue'),
       },
     ],
   },
