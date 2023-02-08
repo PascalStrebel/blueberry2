@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 3.1.1185 on 2023-02-08 11:41:20.
+// Generated using typescript-generator version 3.1.1185 on 2023-02-08 13:37:06.
 
 export interface Child {
     id: number;
