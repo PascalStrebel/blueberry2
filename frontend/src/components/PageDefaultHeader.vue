@@ -9,9 +9,8 @@
 </template>
 
 <script setup lang="ts">
-
+import { IonHeader, IonTitle, IonToolbar } from '@ionic/vue';
 const props = defineProps({
-  myTitle: String
-})
-import {IonHeader, IonTitle, IonToolbar,} from '@ionic/vue';
+  myTitle: String,
+});
 </script>

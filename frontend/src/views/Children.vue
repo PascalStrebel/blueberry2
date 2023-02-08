@@ -5,7 +5,11 @@
     </div>
     <ion-content class="ion-padding">
       <h1>Content</h1>
-      <ion-card :key="child.name" v-for="child in children">
+      <ion-card
+        :router-link="'/tabs/children/' + child.id"
+        :key="child.id"
+        v-for="child in children"
+      >
         <ion-card-header>
           <ion-card-title>
             {{ child.firstName }} {{ child.name }}

@@ -1,6 +1,6 @@
-import {Child, Observation} from '@/model/model';
+import { Child, Observation } from '@/model/model';
 import axios from 'axios';
-import {API_ROOT} from "@/config/development";
+import { API_ROOT } from '@/config/development';
 
 export const CHILDREN_API = API_ROOT + '/children';
 export const OBSERVATION_API = API_ROOT + '/observations';
@@ -11,7 +11,7 @@ export async function getChildren(): Promise<Child[]> {
 }
 
 export async function getChildById(id: number): Promise<Child> {
-  const response = await axios.get(CHILDREN_API + id);
+  const response = await axios.get(CHILDREN_API + '/' + id);
   return response.data;
 }
 
@@ -30,7 +30,9 @@ export async function getObservationById(id: number): Promise<Observation> {
   return response.data;
 }
 
-export async function createObservation(observation: Observation): Promise<Observation> {
+export async function createObservation(
+  observation: Observation
+): Promise<Observation> {
   const response = await axios.post(OBSERVATION_API, observation);
   return response.data;
 }

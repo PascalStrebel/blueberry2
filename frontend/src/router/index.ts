@@ -6,6 +6,7 @@ import Children from '../views/Children.vue';
 import UserOverview from '../views/UserOverview.vue';
 import AdminPage from '../views/AdminPage.vue';
 import EditChildren from '../views/EditChildren.vue';
+import ChildDetail from '../views/ChildDetail.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
@@ -31,6 +32,10 @@ const routes: Array<RouteRecordRaw> = [
       {
         path: 'children',
         component: () => import('@/views/Children.vue'),
+      },
+      {
+        path: 'children/:id',
+        component: () => import('@/views/ChildDetail.vue'),
       },
       {
         path: 'useroverview',
