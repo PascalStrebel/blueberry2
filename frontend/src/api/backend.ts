@@ -25,6 +25,11 @@ export async function getObservations(): Promise<Observation[]> {
   return response.data._embedded.observations;
 }
 
+export async function deleteChild(id: number): Promise<Child[]> {
+  const response = await axios.delete(CHILDREN_API + '/' + id);
+  return response.data;
+}
+
 export async function getObservationById(id: number): Promise<Observation> {
   const response = await axios.get(OBSERVATION_API + id);
   return response.data;
