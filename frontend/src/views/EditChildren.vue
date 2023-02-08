@@ -17,11 +17,12 @@
           <ion-item slot="header" color="light">
             <ion-label>Add a new Child</ion-label>
           </ion-item>
-          
+
           <ion-item class="ion-padding" slot="content">
             <ion-label position="stacked">Surname</ion-label>
             <ion-input v-model="children.name"></ion-input>
           </ion-item>
+
           <ion-item class="ion-padding" slot="content">
             <ion-label position="stacked">Firstname</ion-label>
             <ion-input v-model="children.firstName"></ion-input>
@@ -32,10 +33,13 @@
             <ion-input type="date" v-model="children.birthdate"></ion-input>
           </ion-item>
 
-          <ion-item class="ion-padding" slot="content">
-            <ion-label position="stacked">Gender</ion-label>
-            <ion-input v-model="children.gender"></ion-input>
-          </ion-item>
+         <ion-item class="ion-padding" slot="content">
+    <ion-select placeholder="Select Gender" v-model="children.gender">
+      <ion-select-option value="M">Male</ion-select-option>
+      <ion-select-option value="W">Female</ion-select-option>
+      <ion-select-option value="D">Divers</ion-select-option>
+    </ion-select>
+  </ion-item>  
 
           <ion-item class="ion-padding" slot="content">
             <ion-label position="stacked">Nationality</ion-label>
@@ -73,6 +77,7 @@
 
 <script setup lang="ts">
 import {
+  IonSelect,
   IonAccordionGroup,
   IonAccordion,
   IonList,
@@ -88,6 +93,7 @@ import {
 
 import { Child } from "../model/model";
 import { createChild } from "../api/backend";
+import { IonSelectOption } from "@ionic/vue";
 
 const children = {} as Child;
 
