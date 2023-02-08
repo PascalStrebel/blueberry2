@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 3.1.1185 on 2023-02-08 14:32:37.
+// Generated using typescript-generator version 3.1.1185 on 2023-02-08 16:56:21.
 
 export interface Child {
     id: number;
@@ -25,6 +25,9 @@ export interface ChildObservation {
 export interface ChildObservationKey extends Serializable {
     childId: number;
     observationId: number;
+}
+
+export interface ChildObservationRepository extends JpaRepository<ChildObservation, ChildObservationKey> {
 }
 
 export interface ChildRepository extends JpaRepository<Child, number> {

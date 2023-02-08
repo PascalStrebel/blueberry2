@@ -11,30 +11,71 @@
           <ion-title size="large">Children</ion-title>
         </ion-toolbar>
       </ion-header>
+      <ion-list>
+        <ion-item
+          class="ion-padding"
+          slot="content"
+          v-for="child of existingChildren"
+          :key="child.id"
+        >
+          <ion-label>{{ child.name }} {{ child.firstName }}</ion-label>
+          <ion-label>{{ child.birthdate }}</ion-label>
+          <ion-label
+            ><ion-tab-button tab="edit" @click="editSpecificChild(child)">
+              <ion-icon :icon="pencil" />
+            </ion-tab-button>
+          </ion-label>
+          <ion-label>
+            <ion-tab-button
+              @click="() => deleteSpecificChild(child.id, child.name, child.firstName)"
+            >
+              <ion-icon :icon="trash" />
+            </ion-tab-button>
+          </ion-label>
+        </ion-item>
+      </ion-list>
+    </ion-content>
 
-      <ion-accordion-group>
-        <ion-accordion value="first">
-          <ion-item slot="header" color="light">
-            <ion-label>Add a new Child</ion-label>
-          </ion-item>
-
-          <ion-item class="ion-padding" slot="content">
+    <ion-content class="ion-padding">
+      <ion-button class="modalbutton" id="open-modal" expand="block">Add a new child</ion-button>
+      <ion-modal ref="modal" trigger="open-modal">
+        <ion-header>
+          <ion-toolbar>
+            <ion-buttons slot="start">
+              <ion-button @click="cancel()">Cancel</ion-button>
+            </ion-buttons>
+            <ion-title>Child properties</ion-title>
+            <ion-buttons slot="end">
+              <ion-button :strong="true" @click="createANewChild">Confirm</ion-button>
+            </ion-buttons>
+          </ion-toolbar>
+        </ion-header>
+        <ion-content class="ion-padding">
+          <ion-item>
             <ion-label position="stacked">Surname</ion-label>
-            <ion-input v-model="children.name"></ion-input>
+            <ion-input v-model="children.name" required=true></ion-input>
           </ion-item>
 
-          <ion-item class="ion-padding" slot="content">
+          <ion-item>
             <ion-label position="stacked">Firstname</ion-label>
-            <ion-input v-model="children.firstName"></ion-input>
+            <ion-input v-model="children.firstName" required></ion-input>
           </ion-item>
 
-          <ion-item class="ion-padding" slot="content">
+          <ion-item>
             <ion-label position="stacked">Birthdate</ion-label>
-            <ion-input type="date" v-model="children.birthdate"></ion-input>
+            <ion-input
+              type="date"
+              v-model="children.birthdate"
+              required
+            ></ion-input>
           </ion-item>
 
-          <ion-item class="ion-padding" slot="content">
-            <ion-select placeholder="Select Gender" v-model="children.gender">
+          <ion-item>
+            <ion-select
+              placeholder="Select Gender"
+              v-model="children.gender"
+              required
+            >
               <ion-select-option value="M">Male</ion-select-option>
               <ion-select-option value="W">Female</ion-select-option>
               <ion-select-option value="D">Divers</ion-select-option>
@@ -44,51 +85,26 @@
           <ion-item class="ion-padding" slot="content">
             <ion-label position="stacked">Nationality</ion-label>
 
-            <ion-input v-model="children.nationality"></ion-input>
+            <ion-input v-model="children.nationality" required />
           </ion-item>
-
-          <ion-item class="ion-padding" slot="content">
+          <ion-item>
             <ion-label position="stacked">Entry Date</ion-label>
-            <ion-input type="date" v-model="children.entryDate"></ion-input>
+            <ion-input
+              type="date"
+              v-model="children.entryDate"
+              required
+            ></ion-input>
           </ion-item>
-
-          <ion-button @click="create" slot="content">Create</ion-button>
-        </ion-accordion>
-      </ion-accordion-group>
-
-      <ion-accordion-group>
-        <ion-accordion value="first">
-          <ion-item slot="header" color="light">
-            <ion-label>Edit existing Child</ion-label>
-          </ion-item>
-
-          <ion-item
-            class="ion-padding"
-            slot="content"
-            v-for="child of existingChildren"
-            :key="child.id"
-          >
-            <ion-label>{{ child.name }} {{ child.firstName }}</ion-label>
-            <ion-label>{{ child.birthdate }}</ion-label>
-            <ion-label
-              ><ion-tab-button tab="edit" href="/tabs/children">
-                <ion-icon :icon="pencil" />
-              </ion-tab-button>
-            </ion-label>
-            <ion-label>
-              <ion-tab-button @click="() => presentAlert(child.id, child.name, child.firstName)">
-                <ion-icon :icon="trash" />
-              </ion-tab-button>
-            </ion-label>
-          </ion-item>
-        </ion-accordion>
-      </ion-accordion-group>
+        </ion-content>
+      </ion-modal>
     </ion-content>
   </ion-page>
 </template>
 
 <script setup lang="ts">
 import {
+  IonButtons,
+  IonModal,
   IonIcon,
   IonButton,
   IonSelect,
@@ -113,11 +129,13 @@ import { onMounted } from "@vue/runtime-core";
 import { getChildren } from "../api/backend";
 import { deleteChild } from "../api/backend";
 import { IonSelectOption, alertController } from "@ionic/vue";
+import { OverlayEventDetail } from "@ionic/core/components";
+import { defineComponent } from "vue";
 
-const children = {} as Child;
+let children = {} as Child;
 
-function create() {
-  createChild(children);  
+function createANewChild() {
+  createChild(children);
   document.location.reload();
 }
 
@@ -128,7 +146,7 @@ onMounted(async () => {
 
 const handlerMessage = ref("");
 
-const presentAlert = async (id:number, name:string, firstname:string) => {
+const deleteSpecificChild = async (id: number, name: string, firstname: string) => {
   const alert = await alertController.create({
     header: "You sure you wanna delete " + name + " " + firstname + " ?",
     buttons: [
@@ -151,4 +169,22 @@ const presentAlert = async (id:number, name:string, firstname:string) => {
 
   await alert.present();
 };
+
+
+
+
+function editSpecificChild(child: Child) {
+  children = child;
+ //alert("Value 1: " + children.name + "\nValue 2: " + children.firstName);
+
+let element: HTMLElement = document.getElementsByClassName('modalbutton')[0] as HTMLElement;
+element.click();
+
+}
+
+
+function cancel() {
+  document.location.reload();
+}
+
 </script>
