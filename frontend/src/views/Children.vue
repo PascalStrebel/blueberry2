@@ -1,29 +1,31 @@
 <template>
   <ion-page>
     <div>
-      <PageDefaultHeader myTitle="My Page Title" />
+      <PageDefaultHeader myTitle="Blueberry" />
     </div>
     <ion-content class="ion-padding">
       <h1>Content</h1>
-      <ion-card
-        :router-link="'/tabs/children/' + child.id"
-        :key="child.id"
-        v-for="child in children"
-      >
-        <ion-card-header>
-          <ion-card-title>
-            {{ child.firstName }} {{ child.name }}
-          </ion-card-title>
-          <ion-card-subtitle>
-            {{ child.birthdate }}
-          </ion-card-subtitle>
-        </ion-card-header>
+      <div>
+        <ion-card
+          :router-link="'/tabs/children/' + child.id"
+          :key="child.id"
+          v-for="child in children"
+        >
+          <ion-card-header>
+            <ion-card-title>
+              {{ child.firstName }} {{ child.name }}
+            </ion-card-title>
+            <ion-card-subtitle>
+              {{ child.birthdate }}
+            </ion-card-subtitle>
+          </ion-card-header>
 
-        <ion-card-content>
-          Here's a small text description for the card content. Nothing more,
-          nothing less.
-        </ion-card-content>
-      </ion-card>
+          <ion-card-content>
+            Here's a small text description for the card content. Nothing more,
+            nothing less.
+          </ion-card-content>
+        </ion-card>
+      </div>
     </ion-content>
   </ion-page>
 </template>
