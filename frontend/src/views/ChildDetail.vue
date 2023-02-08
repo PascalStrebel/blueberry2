@@ -13,17 +13,33 @@
         <ion-card-subtitle>Entry Date: {{ child.entryDate }}</ion-card-subtitle>
       </ion-card-header>
     </ion-card>
-    <ion-card v-for="category in categories" :key="category">
-      {{ category }}
-    </ion-card>
+
+
+    <ion-accordion-group>
+      <ion-accordion v-for="category in categories" :key="category" >
+        <ion-item slot="header" color="light">
+          <ion-label>{{` ${category} `}}</ion-label>
+        </ion-item>
+
+        <ion-item class="ion-padding" slot="content">
+          <ion-label position="stacked">{{ getChildObservationPercent(category) }}</ion-label>
+        </ion-item>
+
+        <ion-item v-for="observation in observations.filter(obs => obs.category === category)" class="ion-padding" slot="content">
+          <ion-label position="stacked">{{ observation.text }}</ion-label>
+          <ion-button @click="completeObservation(child, observation)">Complete</ion-button>
+        </ion-item>
+
+      </ion-accordion>
+    </ion-accordion-group>
   </ion-page>
 </template>
 
 <script setup lang="ts">
 import PageDefaultHeader from '../components/PageDefaultHeader.vue';
 import { onMounted } from '@vue/runtime-core';
-import { getChildById, getObservations } from '@/api/backend';
-import { Child, Observation } from '@/model/model';
+import {createChildObservation, getChildById, getChildObservationsById, getObservations} from '@/api/backend';
+import {Child, ChildObservation, Observation} from '@/model/model';
 import { defineComponent } from 'vue';
 import {
   IonCard,
@@ -31,8 +47,13 @@ import {
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
-  IonContent,
+  IonButton,
   IonPage,
+  IonAccordionGroup,
+  IonAccordion,
+  IonList,
+  IonItem,
+  IonLabel,
 } from '@ionic/vue';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
@@ -48,6 +69,7 @@ const id = route.params.id;
 
 let observations = ref<Observation[]>([]);
 let categories = ref<string[]>([]);
+let childObservations = ref<ChildObservation[]>([]);
 onMounted(async () => {
   observations.value = await getObservations();
   let categoryStrings = observations.value.map(
@@ -57,7 +79,18 @@ onMounted(async () => {
     (n, i) => categoryStrings.indexOf(n) === i
   );
   categories.value = categoryStrings;
+  childObservations.value = await getChildObservationsById(+id);
 });
+
+function completeObservation(child: Child, observation: Observation) {
+  createChildObservation(child, observation);
+}
+
+function getChildObservationPercent(category: string): string {
+  console.log(childObservations.value)
+  console.log(childObservations.value.map(co => co.observation))
+  return childObservations.value.map(co => co.observation?.text).join(",");
+}
 </script>
 
 <style scoped>

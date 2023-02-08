@@ -3,6 +3,7 @@ package ch.zhaw.blueberry2.entity;
 import javax.persistence.*;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -78,6 +79,9 @@ public class Child {
     }
 
     public List<ChildObservation> getChildObservations() {
+        if (childObservations == null) {
+            childObservations = new ArrayList<>();
+        }
         return childObservations;
     }
 

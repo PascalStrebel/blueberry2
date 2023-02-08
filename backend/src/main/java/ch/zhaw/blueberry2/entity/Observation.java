@@ -2,6 +2,7 @@ package ch.zhaw.blueberry2.entity;
 
 import javax.persistence.*;
 
+import java.util.ArrayList;
 import java.util.List;
 
 @Entity
@@ -14,7 +15,7 @@ public class Observation {
     private String category;
     private String text;
 
-    @OneToMany(mappedBy="observation")
+    @OneToMany(mappedBy = "observation")
     private List<ChildObservation> childObservations;
 
     public long getId() {
@@ -50,6 +51,9 @@ public class Observation {
     }
 
     public List<ChildObservation> getChildObservations() {
+        if (childObservations == null) {
+            childObservations = new ArrayList<>();
+        }
         return childObservations;
     }
 

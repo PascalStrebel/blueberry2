@@ -11,7 +11,7 @@ export function useLogin() {
     const login = async () => {
         try {
             const token = await getToken(username.value, password.value);
-            // TODO: do something meaningful with the token :-)
+            // TODO: do something meaningful with the token :-)r
             //console.log(token)
             router.push('/tabs/todo')
         } catch (error) {
