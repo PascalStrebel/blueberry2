@@ -8,9 +8,9 @@
           <ion-label>Todo</ion-label>
         </ion-tab-button>
 
-        <ion-tab-button tab="projects" href="/tabs/projects">
-          <ion-icon :icon="apps" />
-          <ion-label>Projects</ion-label>
+        <ion-tab-button tab="children" href="/tabs/children">
+          <ion-icon :icon="person" />
+          <ion-label>Children</ion-label>
         </ion-tab-button>
 
         <ion-tab-button tab="timerecord" href="/tabs/timerecord">
@@ -41,6 +41,6 @@ import {
   IonIcon,
   IonPage,
   IonRouterOutlet,
-} from "@ionic/vue";
-import { flash, apps, person, send } from "ionicons/icons";
+} from '@ionic/vue';
+import { flash, apps, person, send } from 'ionicons/icons';
 </script>

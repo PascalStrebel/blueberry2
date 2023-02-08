@@ -1,8 +1,15 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 3.1.1185 on 2023-02-07 17:23:59.
+// Generated using typescript-generator version 3.1.1185 on 2023-02-08 09:28:00.
 
-export interface Child extends Person {
+export interface Child {
+    id: number;
+    name: string;
+    firstName: string;
+    birthdate: Date;
+    nationality: string;
+    entryDate: Date;
+    gender: Gender;
     childObservations: ChildObservation[];
 }
 
@@ -32,16 +39,6 @@ export interface Observation {
 }
 
 export interface ObservationRepository extends JpaRepository<Observation, number> {
-}
-
-export interface Person {
-    id: number;
-    name: string;
-    firstName: string;
-    birthdate: Date;
-    nationality: string;
-    entryDate: Date;
-    gender: Gender;
 }
 
 export interface Project {
