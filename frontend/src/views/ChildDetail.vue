@@ -82,14 +82,16 @@ onMounted(async () => {
   childObservations.value = await getChildObservationsById(+id);
 });
 
-function completeObservation(child: Child, observation: Observation) {
+async function completeObservation(child: Child, observation: Observation) {
   createChildObservation(child, observation);
+  childObservations.value = await getChildObservationsById(+id)
 }
 
 function getChildObservationPercent(category: string): string {
-  console.log(childObservations.value)
-  console.log(childObservations.value.map(co => co.observation))
-  return childObservations.value.map(co => co.observation?.text).join(",");
+  let relevantObservations = observations.value.filter(obs => obs.category === category).length;
+  let relevantChildObservations = childObservations.value.filter(co => co?.observation.category === category).length;
+
+return (relevantChildObservations / relevantObservations) * 100 + '%';
 }
 </script>
 

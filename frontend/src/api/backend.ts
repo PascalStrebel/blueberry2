@@ -4,7 +4,8 @@ import {API_ROOT} from '@/config/development';
 
 export const CHILDREN_API = API_ROOT + '/children';
 export const OBSERVATION_API = API_ROOT + '/observations';
-export const CHILD_OBSERVATION_API = '/childObservations';
+export const CHILD_OBSERVATION_SUFFIX = '/childObservations';
+export const CHILD_OBSERVATION_API = API_ROOT + '/childObservations';
 
 export async function getChildren(): Promise<Child[]> {
     const response = await axios.get(CHILDREN_API);
@@ -44,12 +45,12 @@ export async function createObservation(
 }
 
 export async function getChildObservationsById(childId: number): Promise<ChildObservation[]> {
-    let response = await axios.get(CHILDREN_API + '/' + childId + CHILD_OBSERVATION_API);
+    let response = await axios.get(CHILDREN_API + '/' + childId + CHILD_OBSERVATION_SUFFIX);
     let childObservations = response.data._embedded.childObservations;
-    childObservations = childObservations.map(async (co: ChildObservation) => {
-        co.child = await getChildById(co.id.childId);
-        co.observation = await getObservationById(co.id.observationId);
-    });
+    for (let i = 0; i < childObservations.length; i++) {
+        childObservations[i].child = await getChildById(childObservations[i].id.childId)
+        childObservations[i].observation = await getObservationById(childObservations[i].id.observationId)
+    }
     return childObservations;
 }
 
