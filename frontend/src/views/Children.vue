@@ -3,7 +3,7 @@
     <div>
       <PageDefaultHeader myTitle="My Page Title" />
       <ion-content class="ion-padding">
-        <!-- <h1>Content</h1>
+        <h1>Content</h1>
         <ion-card :key="child.name" v-for="child in children">
           <ion-card-header>
             <ion-card-title>
@@ -18,7 +18,7 @@
             Here's a small text description for the card content. Nothing more,
             nothing less.
           </ion-card-content>
-        </ion-card> -->
+        </ion-card>
       </ion-content>
     </div>
   </ion-page>
@@ -30,6 +30,11 @@ import { onMounted } from '@vue/runtime-core';
 import { getChildren } from '@/api/backend';
 import { Child } from '@/model/model';
 import {
+  IonCard,
+  IonCardContent,
+  IonCardHeader,
+  IonCardTitle,
+  IonCardSubtitle,
   loadingController,
   IonPage,
   IonHeader,
