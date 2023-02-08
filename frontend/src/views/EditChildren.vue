@@ -76,7 +76,7 @@
               </ion-tab-button>
             </ion-label>
             <ion-label>
-              <ion-tab-button @click="deleteChild(child.id)">
+              <ion-tab-button @click="() => presentAlert(child.id, child.name, child.firstName)">
                 <ion-icon :icon="trash" />
               </ion-tab-button>
             </ion-label>
@@ -89,7 +89,6 @@
 
 <script setup lang="ts">
 import {
-  IonTabButton,
   IonIcon,
   IonButton,
   IonSelect,
@@ -111,14 +110,15 @@ import { Child } from "../model/model";
 import { createChild } from "../api/backend";
 import { ref } from "vue";
 import { onMounted } from "@vue/runtime-core";
-import { getChildren } from "@/api/backend";
+import { getChildren } from "../api/backend";
 import { deleteChild } from "../api/backend";
 import { IonSelectOption, alertController } from "@ionic/vue";
 
 const children = {} as Child;
 
 function create() {
-  createChild(children);
+  createChild(children);  
+  document.location.reload();
 }
 
 let existingChildren = ref<Child[]>([]);
@@ -128,10 +128,9 @@ onMounted(async () => {
 
 const handlerMessage = ref("");
 
-function deleteChild(id:number){
-async () => {
+const presentAlert = async (id:number, name:string, firstname:string) => {
   const alert = await alertController.create({
-    header: "You sure?",
+    header: "You sure you wanna delete " + name + " " + firstname + " ?",
     buttons: [
       {
         text: "Cancel",
@@ -143,8 +142,8 @@ async () => {
         role: "confirm",
         handler: () => {
           handlerMessage.value = "Alert confirmed";
-          //deleteChild(id);
-          console.log(id);
+          deleteChild(id);
+          document.location.reload();
         },
       },
     ],
@@ -152,5 +151,4 @@ async () => {
 
   await alert.present();
 };
-}
 </script>
