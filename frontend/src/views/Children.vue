@@ -26,32 +26,14 @@
 
 <script setup lang="ts">
 import PageDefaultHeader from '../components/PageDefaultHeader.vue';
-import { onMounted } from '@vue/runtime-core';
-import { getChildren } from '@/api/backend';
-import { Child } from '@/model/model';
-import {
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardTitle,
-  IonCardSubtitle,
-  loadingController,
-  IonPage,
-  IonHeader,
-  IonToolbar,
-  IonTitle,
-  IonContent,
-  IonCol,
-  IonRow,
-  IonGrid,
-  IonItem,
-  IonList,
-  IonButton,
-  IonInput,
-} from '@ionic/vue';
+import {onMounted} from '@vue/runtime-core';
+import {getChildren} from '@/api/backend';
+import {Child} from '@/model/model';
+import {IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonPage,} from '@ionic/vue';
+import {ref} from "vue";
 
-let children: Child[];
+let children = ref<Child[]>([]);
 onMounted(async () => {
-  children = await getChildren();
+  children.value = await getChildren();
 });
 </script>
