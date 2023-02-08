@@ -1,10 +1,7 @@
 <template>
   <ion-page>
     <ion-content>
-      <div>
         <PageDefaultHeader myTitle="Child Details" />
-      </div>
-      <div>
         <ion-card>
           <ion-card-header>
             <ion-card-title
@@ -21,36 +18,38 @@
             >
           </ion-card-header>
         </ion-card>
-      </div>
-      <div>
         <ion-accordion-group>
           <ion-accordion v-for="category in categories" :key="category">
             <ion-item slot="header" color="light">
-              <ion-label>{{
-                ` ${category} (${getChildObservationPercent(category)})`
-              }}</ion-label>
+              <ion-label>{{` ${category} (${getChildObservationPercent(category)})`}}</ion-label>
             </ion-item>
 
-            <ion-item
-              v-for="observation in observations.filter(
-                (obs) => obs.category === category
-              )"
-              class="ion-padding"
-              slot="content"
-              :key="observation.id"
-            >
+            <ion-item v-for="observation in observations.filter(obs => obs.category === category)" class="ion-padding"
+                      slot="content">
               <ion-label position="stacked">{{ observation.text }}</ion-label>
-              <div>
-                <ion-button
-                  @click="completeObservation(child, observation)"
-                  :disabled="observationCompleted(observation)"
-                  >Complete</ion-button
-                >
+              <ion-button @click="updateCompletionId(observation.id)" :disabled="observationCompleted(observation)">
+                Complete
+              </ion-button>
+
+              <div v-if="completeId === observation.id">
+                <ion-item class="ion-padding" slot="content">
+                  <ion-select placeholder="Select Points" v-model="points">
+                    <ion-select-option value="0">Incomplete</ion-select-option>
+                    <ion-select-option value="1">Partially</ion-select-option>
+                    <ion-select-option value="2">Complete</ion-select-option>
+                  </ion-select>
+                </ion-item>
+                <ion-item>
+                  <ion-label position="stacked">Comment</ion-label>
+                  <ion-input v-model="comment"></ion-input>
+                </ion-item>
+                <ion-button @click="completeObservation(child, observation, points, comment)">
+                  OK
+                </ion-button>
               </div>
             </ion-item>
           </ion-accordion>
         </ion-accordion-group>
-      </div>
     </ion-content>
   </ion-page>
 </template>
@@ -82,6 +81,9 @@ import {
   IonList,
   IonItem,
   IonLabel,
+  IonSelect,
+  IonSelectOption,
+  IonInput
 } from '@ionic/vue';
 import { ref } from 'vue';
 import { useRoute } from 'vue-router';
@@ -98,6 +100,11 @@ const id = route.params.id;
 let observations = ref<Observation[]>([]);
 let categories = ref<string[]>([]);
 let childObservations = ref<ChildObservation[]>([]);
+
+let completeId = ref<number>();
+let points: number;
+let comment: string;
+
 onMounted(async () => {
   observations.value = await getObservations();
   let categoryStrings = observations.value.map(
@@ -110,30 +117,31 @@ onMounted(async () => {
   childObservations.value = await getChildObservationsById(+id);
 });
 
-async function completeObservation(child: Child, observation: Observation) {
-  await createChildObservation(child, observation);
+async function completeObservation(child: Child, observation: Observation, point: number, comment: string) {
+  await createChildObservation(child, observation, points, comment);
   window.location.reload();
+}
+
+function updateCompletionId(observationId: number): void {
+  completeId.value !== observationId ? completeId.value = observationId : completeId.value = 0;
 }
 
 function getChildObservationPercent(category: string): string {
   let relevantObservations = observations.value.filter(
     (obs) => obs.category === category
-  ).length;
+  ).length * 2;
   let relevantChildObservations = childObservations.value.filter(
     (co) => co?.observation.category === category
-  ).length;
+  ).reduce((sum, current) => sum + current.points, 0);
 
   return (relevantChildObservations / relevantObservations) * 100 + '%';
 }
 
 function observationCompleted(observation: Observation): boolean {
-  return (
-    childObservations.value.filter(
-      (co) =>
-        co?.observation.id === observation.id && co.child.id == child.value.id
-    ).length > 0
-  );
+  let matchingChildObservation = childObservations.value.filter(co => co?.observation.id === observation.id && co.child.id == child.value.id);
+  return matchingChildObservation.length > 0 && matchingChildObservation[0].points === 2;
 }
+
 </script>
 
 <style scoped>

@@ -54,6 +54,9 @@ export async function getChildObservationsById(childId: number): Promise<ChildOb
     return childObservations;
 }
 
-export async function createChildObservation(child: Child, observation: Observation): Promise<void> {
-    axios.post(CHILD_OBSERVATION_API, {childId: child.id, observationId: observation.id} as ChildObservationKey);
+export async function createChildObservation(child: Child, observation: Observation, points: number, comment: string): Promise<void> {
+    axios.post(CHILD_OBSERVATION_API + '?points=' + points + '&comment=' + comment, {
+        childId: child.id,
+        observationId: observation.id
+    } as ChildObservationKey);
 }
