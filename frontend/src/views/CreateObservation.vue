@@ -32,8 +32,8 @@
 
 <script setup lang="ts">
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonLabel, IonInput, IonItem } from '@ionic/vue';
-import {Observation} from "@/model/model";
-import {createObservation} from "@/api/backend";
+import {Observation} from "../model/model";
+import {createObservation} from "../api/backend";
 
 const observation = {} as Observation;
 
