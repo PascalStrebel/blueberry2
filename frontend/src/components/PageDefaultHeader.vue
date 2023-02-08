@@ -2,19 +2,16 @@
   <ion-header>
     <ion-toolbar>
       <ion-title>
-        {{ title }}
+        {{ myTitle }}
       </ion-title>
     </ion-toolbar>
   </ion-header>
 </template>
 
-<script lang="ts">
-export default {
-  props: {
-    title: {
-      type: String,
-      required: true,
-    },
-  },
-};
+<script setup lang="ts">
+
+const props = defineProps({
+  myTitle: String
+})
+import {IonHeader, IonTitle, IonToolbar,} from '@ionic/vue';
 </script>

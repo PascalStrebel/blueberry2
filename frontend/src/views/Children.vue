@@ -1,7 +1,7 @@
 <template>
   <ion-page>
     <div>
-      <PageDefaultHeader title="My Page Title" />
+      <PageDefaultHeader myTitle="My Page Title" />
       <ion-content class="ion-padding">
         <!-- <h1>Content</h1>
         <ion-card :key="child.name" v-for="child in children">

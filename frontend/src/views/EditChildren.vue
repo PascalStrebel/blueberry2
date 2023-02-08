@@ -39,20 +39,23 @@
       <ion-select-option value="W">Female</ion-select-option>
       <ion-select-option value="D">Divers</ion-select-option>
     </ion-select>
-  </ion-item>  
+        </ion-item>
+
 
           <ion-item class="ion-padding" slot="content">
             <ion-label position="stacked">Nationality</ion-label>
-            <ion-input v-model="children.nationality"></ion-input>
-          </ion-item>
+
+
+          <ion-input v-model="children.nationality"></ion-input>
+        </ion-item>
 
           <ion-item class="ion-padding" slot="content">
             <ion-label position="stacked">Entry Date</ion-label>
             <ion-input type="date" v-model="children.entryDate"></ion-input>
           </ion-item>
-          
+
           <ion-button @click="create" slot="content">Create</ion-button>
- 
+
         </ion-accordion>
       </ion-accordion-group>
 
