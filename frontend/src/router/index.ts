@@ -1,15 +1,16 @@
 import { createRouter, createWebHistory } from '@ionic/vue-router';
 import { RouteRecordRaw } from 'vue-router';
-import Tabs from '../views/Tabs.vue'
-import Login from '../views/Login.vue'
-import UserOverview from '../views/UserOverview.vue'
-import AdminPage from '../views/AdminPage.vue'
-import EditChildren from '../views/EditChildren.vue'
+import Tabs from '../views/Tabs.vue';
+import Login from '../views/Login.vue';
+import Children from '../views/Children.vue';
+import UserOverview from '../views/UserOverview.vue';
+import AdminPage from '../views/AdminPage.vue';
+import EditChildren from '../views/EditChildren.vue';
 
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/login'
+    redirect: '/login',
   },
   {
     path: '/login',
@@ -21,39 +22,43 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: '',
-        redirect: '/tabs/tab1'
+        redirect: '/tabs/tab1',
       },
       {
         path: 'todo',
-        component: () => import('@/views/Todo.vue')
+        component: () => import('@/views/Todo.vue'),
       },
       {
-        path: 'projects',
-        component: () => import('@/views/Projects.vue')
-      }, {
+        path: 'children',
+        component: () => import('@/views/Children.vue'),
+      },
+      {
         path: 'useroverview',
-        component: () => import('@/views/UserOverview.vue')
-      }, {
+        component: () => import('@/views/UserOverview.vue'),
+      },
+      {
         path: 'adminpage',
-        component: () => import('@/views/AdminPage.vue')
-      },      {
+        component: () => import('@/views/AdminPage.vue'),
+      },
+      {
         path: 'create/observation',
-        component: () => import('@/views/CreateObservation.vue')
-      }, {
+        component: () => import('@/views/CreateObservation.vue'),
+      },
+      {
         path: 'editchildren',
-        component: () => import('@/views/EditChildren.vue')
+        component: () => import('@/views/EditChildren.vue'),
       },
       {
         path: 'timerecord',
-        component: () => import('@/views/Timerecord.vue')
-      }
-    ]
-  }
-]
+        component: () => import('@/views/Timerecord.vue'),
+      },
+    ],
+  },
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
-  routes
-})
+  routes,
+});
 
-export default router
+export default router;
