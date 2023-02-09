@@ -16,11 +16,6 @@
             ></ion-col
           >
           <ion-col>
-            <ion-button expand="block" router-link="create/observation"
-              >Edit Obseravation</ion-button
-            >
-          </ion-col>
-                    <ion-col>
             <ion-button expand="block" router-link="editobservation"
               >Edit Obseravation</ion-button
             >
@@ -32,7 +27,7 @@
 </template>
 
 <script setup lang="ts">
-import PageDefaultHeader from '@/components/PageDefaultHeader.vue';
+import PageDefaultHeader from "@/components/PageDefaultHeader.vue";
 import {
   IonGrid,
   IonRow,
@@ -43,9 +38,9 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
-} from '@ionic/vue';
+} from "@ionic/vue";
 
-import { defineComponent } from 'vue';
+import { defineComponent } from "vue";
 </script>
 
 <style scoped>

@@ -42,10 +42,6 @@ const routes: Array<RouteRecordRaw> = [
         component: () => import('@/views/SettingsPage.vue'),
       },
       {
-        path: 'create/observation',
-        component: () => import('@/views/CreateObservation.vue'),
-      },
-      {
         path: 'editobservation',
         component: () => import('@/views/EditObservation.vue'),
       },

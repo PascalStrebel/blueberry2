@@ -109,7 +109,7 @@ import {
   IonContent,
 } from "@ionic/vue";
 import { pencil, trash } from "ionicons/icons";
-
+import PageDefaultHeader from "@/components/PageDefaultHeader.vue";
 import { Child } from "../model/model";
 import { createChild } from "../api/backend";
 import { ref } from "vue";
