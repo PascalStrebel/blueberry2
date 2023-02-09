@@ -25,7 +25,7 @@ public class ChildObservationEndpoint {
     }
 
     @PostMapping(path = "/api/childObservations")
-    public void createChildObservation(@RequestBody ChildObservationKey childObservationKey, @RequestParam int points, @RequestParam String comment) {
+    public void createChildObservation(@RequestBody ChildObservationKey childObservationKey, @RequestParam int points, @RequestParam(required = false) String comment) {
         ChildObservation childObservation = new ChildObservation();
         Child child = childRepository.getReferenceById(childObservationKey.getChildId());
         Observation observation = observationRepository.getReferenceById(childObservationKey.getObservationId());

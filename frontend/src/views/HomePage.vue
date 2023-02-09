@@ -5,19 +5,23 @@
     <ion-content :fullscreen="true">
       <ion-card
           :key="childObs.id"
-          v-for="childObs in childObservations.value"
+          v-for="childObs in childObservations"
       >
         <ion-card-header>
           <ion-card-title>
             {{ `${childObs.child.firstName} ${childObs.child.name}` }}
           </ion-card-title>
           <ion-card-subtitle>
-            {{ `${childObs.observation.category} ${childObs.observation.text}` }}
+            {{ `${childObs.observation.category} -> ${childObs.observation.text}` }}
           </ion-card-subtitle>
         </ion-card-header>
 
         <ion-card-content>
-          {{ `${childObs.comment}` }}
+          {{ `Achived at: ${childObs.createdAt}` }}
+        </ion-card-content>
+
+        <ion-card-content v-if="childObs.comment">
+          {{ `Comment: ${childObs.comment}` }}
         </ion-card-content>
       </ion-card>
     </ion-content>
@@ -38,3 +42,23 @@ onMounted(async () => {
   childObservations.value = await getChildObservations();
 });
 </script>
+
+<style scoped>
+/* iOS places the subtitle above the title */
+ion-card-header.ios {
+  display: flex;
+  flex-flow: column-reverse;
+}
+
+ion-card {
+  width: 30%;
+  display: inline-block;
+}
+
+@media (max-width: 768px) {
+  ion-card {
+    width: 100%;
+    display: block;
+  }
+}
+</style>
