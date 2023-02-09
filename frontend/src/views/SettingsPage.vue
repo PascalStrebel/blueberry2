@@ -12,7 +12,7 @@
         <ion-row class="center">
           <ion-col>
             <ion-button expand="block" router-link="editchildren">
-              <ion-icon :icon="people" style="font-size: 5em" /> Edit
+              <ion-icon :icon="people" style="font-size: 5em" />Edit
               Children</ion-button
             ></ion-col
           >
@@ -31,6 +31,7 @@
 <script setup lang="ts">
 import PageDefaultHeader from "@/components/PageDefaultHeader.vue";
 import {
+  IonIcon,
   IonGrid,
   IonRow,
   IonCol,
