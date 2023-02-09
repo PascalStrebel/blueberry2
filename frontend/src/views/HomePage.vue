@@ -19,7 +19,7 @@
         </ion-card-header>
 
         <ion-card-content>
-          {{ `Achived at: ${childObs.createdAt}` }}
+          {{ `Achived at: ${moment(childObs.createdAt).format('DD.MM.YYYY HH:mm')}` }}
         </ion-card-content>
 
         <ion-card-content v-if="childObs.comment">
@@ -39,6 +39,7 @@ import {ChildObservation} from "@/model/model";
 import {onMounted} from "@vue/runtime-core";
 import {getChildObservations} from "@/api/backend";
 import {getCardColor, getCardColorHomePage} from "@/style/cardColor";
+import moment from 'moment';
 
 let childObservations = ref<ChildObservation[]>([]);
 onMounted(async () => {
