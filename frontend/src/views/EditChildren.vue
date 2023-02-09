@@ -1,13 +1,9 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Blueberry Settings / Edit Children</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <PageDefaultHeader myTitle="Blueberry Settings / Edit Children"/>
     <ion-content class="ion-padding">
       <ion-list>
-        <ion-item          
+        <ion-item
           slot="content"
           v-for="child of existingChildren"
           :key="child.id"
@@ -123,6 +119,7 @@ import { deleteChild } from "../api/backend";
 import { IonSelectOption, alertController } from "@ionic/vue";
 import { OverlayEventDetail } from "@ionic/core/components";
 import { defineComponent } from "vue";
+import PageDefaultHeader from "@/components/PageDefaultHeader.vue";
 
 let children = {} as Child;
 

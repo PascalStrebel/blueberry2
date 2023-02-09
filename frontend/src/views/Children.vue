@@ -63,12 +63,11 @@ onMounted(async () => {
 });
 
 function searchStringChange(event: any): void {
-  console.log(event.target.value);
-  let searchTerm = event.target.value.toLowerCase();
-  let filteredChildren = allChildren.filter((child) =>
-    JSON.stringify(child).toLowerCase().includes(searchTerm)
-  );
-  children.value = searchTerm.length === 0 ? allChildren : filteredChildren;
+  if (event.target.value.length === 0) {
+    children.value = allChildren;
+  } else {
+    children.value = allChildren.filter(child => JSON.stringify(child).toLowerCase().includes(event.target.value.toLowerCase()));
+  }
 }
 </script>
 
