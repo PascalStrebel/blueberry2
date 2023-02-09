@@ -6,6 +6,7 @@
       <ion-card
           :style="{ '--background': getCardColorHomePage(childObs) }"
           :key="childObs.id"
+          :router-link="'/tabs/children/' + childObs.child.id"
           v-for="childObs in childObservations"
       >
         <ion-card-header>
