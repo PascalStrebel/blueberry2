@@ -14,6 +14,7 @@
     <ion-content class="ion-padding">
       <h1>Content</h1>
       <ion-card
+        button
         :style="{ '--background': getCardColor(child) }"
         :router-link="'/tabs/children/' + child.id"
         :key="child.id"
@@ -87,6 +88,10 @@ ion-card-header.ios {
 ion-card {
   width: 30%;
   display: inline-block;
+}
+
+ion-card:hover {
+  opacity: 80%;
 }
 
 @media (max-width: 768px) {
