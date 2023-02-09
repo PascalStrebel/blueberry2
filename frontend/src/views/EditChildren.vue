@@ -5,30 +5,31 @@
         <ion-title>Blueberry Settings / Edit Children</ion-title>
       </ion-toolbar>
     </ion-header>
-    <ion-content>
+    <ion-content class="ion-padding">
       <ion-list>
-        <ion-item
-          class="ion-padding"
+        <ion-item          
           slot="content"
           v-for="child of existingChildren"
           :key="child.id"
         >
           <ion-label>{{ child.name }} {{ child.firstName }}</ion-label>
           <ion-label>{{ child.birthdate }}</ion-label>
-          <ion-label>
-            <ion-tab-button tab="edit" @click="editSpecificChild(child)">
-              <ion-icon :icon="pencil" />
-            </ion-tab-button>
-          </ion-label>
-          <ion-label>
-            <ion-tab-button
-              @click="
-                deleteSpecificChild(child.id, child.name, child.firstName)
-              "
-            >
-              <ion-icon :icon="trash" />
-            </ion-tab-button>
-          </ion-label>
+          <div id="editbuttons">
+            <ion-label>
+              <ion-tab-button tab="edit" @click="editSpecificChild(child)">
+                <ion-icon :icon="pencil" />
+              </ion-tab-button>
+            </ion-label>
+            <ion-label>
+              <ion-tab-button
+                @click="
+                  deleteSpecificChild(child.id, child.name, child.firstName)
+                "
+              >
+                <ion-icon :icon="trash" />
+              </ion-tab-button>
+            </ion-label>
+          </div>
         </ion-item>
       </ion-list>
 
@@ -110,18 +111,18 @@ import {
   IonToolbar,
   IonTitle,
   IonContent,
-} from '@ionic/vue';
-import { pencil, trash } from 'ionicons/icons';
+} from "@ionic/vue";
+import { pencil, trash } from "ionicons/icons";
 
-import { Child } from '../model/model';
-import { createChild } from '../api/backend';
-import { ref } from 'vue';
-import { onMounted } from '@vue/runtime-core';
-import { getChildren } from '../api/backend';
-import { deleteChild } from '../api/backend';
-import { IonSelectOption, alertController } from '@ionic/vue';
-import { OverlayEventDetail } from '@ionic/core/components';
-import { defineComponent } from 'vue';
+import { Child } from "../model/model";
+import { createChild } from "../api/backend";
+import { ref } from "vue";
+import { onMounted } from "@vue/runtime-core";
+import { getChildren } from "../api/backend";
+import { deleteChild } from "../api/backend";
+import { IonSelectOption, alertController } from "@ionic/vue";
+import { OverlayEventDetail } from "@ionic/core/components";
+import { defineComponent } from "vue";
 
 let children = {} as Child;
 
@@ -135,7 +136,7 @@ onMounted(async () => {
   existingChildren.value = await getChildren();
 });
 
-const handlerMessage = ref('');
+const handlerMessage = ref("");
 
 const deleteSpecificChild = async (
   id: number,
@@ -143,18 +144,18 @@ const deleteSpecificChild = async (
   firstname: string
 ) => {
   const alert = await alertController.create({
-    header: 'You sure you wanna delete ' + name + ' ' + firstname + ' ?',
+    header: "You sure you wanna delete " + name + " " + firstname + " ?",
     buttons: [
       {
-        text: 'Cancel',
-        role: 'cancel',
+        text: "Cancel",
+        role: "cancel",
         handler: () => {},
       },
       {
-        text: 'Delete',
-        role: 'confirm',
+        text: "Delete",
+        role: "confirm",
         handler: () => {
-          handlerMessage.value = 'Alert confirmed';
+          handlerMessage.value = "Alert confirmed";
           deleteChild(id);
           document.location.reload();
         },
@@ -170,7 +171,7 @@ function editSpecificChild(child: Child) {
   //alert("Value 1: " + children.name + "\nValue 2: " + children.firstName);
 
   let element: HTMLElement = document.getElementsByClassName(
-    'modalbutton'
+    "modalbutton"
   )[0] as HTMLElement;
   element.click();
 }
@@ -179,6 +180,8 @@ function cancel() {
   document.location.reload();
 }
 </script>
+
+
 <style scoped>
 ion-modal {
   --width: fit-content;
@@ -187,4 +190,11 @@ ion-modal {
   --border-radius: 6px;
   --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
 }
+
+#editbuttons ion-label  {
+  padding: 8px;
+
+}
+
+
 </style>
