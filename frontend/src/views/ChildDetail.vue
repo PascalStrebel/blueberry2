@@ -1,21 +1,15 @@
 <template>
   <ion-page>
+    <PageDefaultHeader myTitle="Child Details" />
+    <ion-card-header>
+      <ion-card-title>{{ child.firstName }} {{ child.name }}</ion-card-title>
+      <ion-card-subtitle>Birthday: {{ child.birthdate }}</ion-card-subtitle>
+      <ion-card-subtitle
+        >Nationality: {{ child.nationality }}
+      </ion-card-subtitle>
+      <ion-card-subtitle>Entry Date: {{ child.entryDate }}</ion-card-subtitle>
+    </ion-card-header>
     <ion-content>
-      <PageDefaultHeader myTitle="Child Details" />
-      <ion-card>
-        <ion-card-header>
-          <ion-card-title
-            >{{ child.firstName }} {{ child.name }}</ion-card-title
-          >
-          <ion-card-subtitle>Birthday: {{ child.birthdate }}</ion-card-subtitle>
-          <ion-card-subtitle
-            >Nationality: {{ child.nationality }}
-          </ion-card-subtitle>
-          <ion-card-subtitle
-            >Entry Date: {{ child.entryDate }}</ion-card-subtitle
-          >
-        </ion-card-header>
-      </ion-card>
       <ion-accordion-group>
         <ion-accordion v-for="category in categories" :key="category">
           <ion-item slot="header" color="light">
