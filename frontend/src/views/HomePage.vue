@@ -1,41 +1,21 @@
 <template>
   <ion-page>
-    <PageDefaultHeader myTitle="Blueberry Home" />
+    <PageDefaultHeader myTitle="Blueberry Home"/>
 
     <ion-content :fullscreen="true">
       <div class="card-container">
         <ion-card
-          clas="same-height"
-          :style="{ '--background': getCardColorHomePage(childObs) }"
-          :key="childObs.id"
-          v-for="childObs in childObservations"
-<<<<<<< Updated upstream
-      >
-        <ion-card-header>
-          <ion-card-title>
-            {{ `${childObs.child.firstName} ${childObs.child.name}` }}
-          </ion-card-title>
-          <ion-card-subtitle>
-            {{ `${childObs.observation.category} -> ${childObs.observation.text}` }}
-          </ion-card-subtitle>
-        </ion-card-header>
-
-        <ion-card-content>
-          {{ `Achived at: ${moment(childObs.createdAt).format('DD.MM.YYYY HH:mm')}` }}
-        </ion-card-content>
-
-        <ion-card-content v-if="childObs.comment">
-          {{ `Comment: ${childObs.comment}` }}
-        </ion-card-content>
-      </ion-card>
-=======
+            clas="same-height"
+            :style="{ '--background': getCardColorHomePage(childObs) }"
+            :key="childObs.id"
+            v-for="childObs in childObservations"
         >
           <ion-card-header>
             <ion-card-subtitle>
-              {{ `Achived at: ${childObs.createdAt}` }}
+              {{ `Achived at: ${moment(childObs.createdAt).format('DD.MM.YYYY HH:mm')}` }}
             </ion-card-subtitle>
             <ion-card-title
-              :router-link="'/tabs/children/' + childObs.child.id"
+                :router-link="'/tabs/children/' + childObs.child.id"
             >
               <ion-icon style="float: left" :icon="person"></ion-icon>&nbsp;
               {{ `${childObs.child.firstName} ${childObs.child.name}` }}
@@ -51,7 +31,6 @@
           </ion-card-content>
         </ion-card>
       </div>
->>>>>>> Stashed changes
     </ion-content>
   </ion-page>
 </template>
@@ -59,31 +38,14 @@
 <script setup lang="ts">
 import PageDefaultHeader from '@/components/PageDefaultHeader.vue';
 
-<<<<<<< Updated upstream
 import {IonCard, IonCardContent, IonCardHeader, IonCardSubtitle, IonCardTitle, IonContent, IonPage,} from '@ionic/vue';
 import {ref} from "vue";
 import {ChildObservation} from "@/model/model";
 import {onMounted} from "@vue/runtime-core";
 import {getChildObservations} from "@/api/backend";
-import {getCardColor, getCardColorHomePage} from "@/style/cardColor";
+import {getCardColorHomePage} from "@/style/cardColor";
+import {person} from 'ionicons/icons';
 import moment from 'moment';
-=======
-import {
-  IonCard,
-  IonCardContent,
-  IonCardHeader,
-  IonCardSubtitle,
-  IonCardTitle,
-  IonContent,
-  IonPage,
-} from '@ionic/vue';
-import { person } from 'ionicons/icons';
-import { ref } from 'vue';
-import { ChildObservation } from '@/model/model';
-import { onMounted } from '@vue/runtime-core';
-import { getChildObservations } from '@/api/backend';
-import { getCardColor, getCardColorHomePage } from '@/style/cardColor';
->>>>>>> Stashed changes
 
 let childObservations = ref<ChildObservation[]>([]);
 onMounted(async () => {
@@ -109,6 +71,7 @@ ion-card {
     display: block;
   }
 }
+
 .card-container {
   display: flex;
   flex-wrap: wrap;
@@ -118,6 +81,7 @@ ion-card {
   flex-basis: calc(33.33% - 20px);
   margin: 10px;
 }
+
 .observation {
   font-weight: bold;
 }
