@@ -17,7 +17,7 @@
           )"
           :key="observation"
         >
-          <ion-label>{{ observation.text }} </ion-label>
+          <ion-label>&lt; {{observation.expectedAtMonths}} months | {{ observation.text }} </ion-label>
           <div id="editbuttons">
             <ion-label>
               <ion-tab-button
@@ -176,7 +176,7 @@ const deleteSpecificObservation = async (
   text: string
 ) => {
   const alert = await alertController.create({
-    header: "You sure you wanna delete " + category + " " + text + " ?",
+    header: "You sure you wanna delete \"" + text + "\" ?",
     buttons: [
       {
         text: "Cancel",
