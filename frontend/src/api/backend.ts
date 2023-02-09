@@ -44,6 +44,14 @@ export async function createObservation(
     return response.data;
 }
 
+export async function getChildObservations(): Promise<ChildObservation[]> {
+    const response = await axios.get(CHILD_OBSERVATION_API);
+    if (response.data._embedded) {
+        return response.data._embedded?.observations;
+    }
+    return Promise.resolve([]);
+}
+
 export async function getChildObservationsById(childId: number): Promise<ChildObservation[]> {
     let response = await axios.get(CHILDREN_API + '/' + childId + CHILD_OBSERVATION_SUFFIX);
     let childObservations = response.data._embedded.childObservations;

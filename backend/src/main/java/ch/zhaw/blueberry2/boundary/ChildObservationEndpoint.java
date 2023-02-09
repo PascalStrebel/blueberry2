@@ -2,6 +2,7 @@ package ch.zhaw.blueberry2.boundary;
 
 import ch.zhaw.blueberry2.entity.*;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDateTime;
@@ -20,7 +21,7 @@ public class ChildObservationEndpoint {
 
     @GetMapping(path = "/api/childObservations")
     public List<ChildObservation> getAllChildObservation() {
-        return childObservationRepository.findAll();
+        return childObservationRepository.findAll(Sort.by(Sort.Direction.DESC, "createdAt"));
     }
 
     @PostMapping(path = "/api/childObservations")
