@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 3.1.1185 on 2023-02-09 13:54:31.
+// Generated using typescript-generator version 3.1.1185 on 2023-02-09 15:25:15.
 
 export interface Child {
     id: number;
@@ -40,41 +40,6 @@ export interface Observation {
 }
 
 export interface ObservationRepository extends JpaRepository<Observation, number> {
-}
-
-export interface Project {
-    id: number;
-    title: string;
-    owner: string;
-    toDos: ToDo[];
-}
-
-export interface ProjectRepository extends JpaRepository<Project, number> {
-}
-
-export interface Role {
-    roleName: string;
-}
-
-export interface RoleRepository extends JpaRepository<Role, string> {
-}
-
-export interface ToDo {
-    id: number;
-    title: string;
-    archived: boolean;
-    done: boolean;
-}
-
-export interface ToDoRepository extends JpaRepository<ToDo, number> {
-}
-
-export interface User {
-    loginName: string;
-    roles: Role[];
-}
-
-export interface UserRepository extends JpaRepository<User, string> {
 }
 
 export interface Serializable {

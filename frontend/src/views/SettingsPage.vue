@@ -9,15 +9,17 @@
       </ion-header>
 
       <ion-grid :fixed="true">
-        <ion-row>
+        <ion-row class="center">
           <ion-col>
-            <ion-button expand="block" router-link="editchildren"
-              >Edit Children</ion-button
+            <ion-button expand="block" router-link="editchildren">
+              <ion-icon :icon="people" style="font-size: 5em" /> Edit
+              Children</ion-button
             ></ion-col
           >
           <ion-col>
             <ion-button expand="block" router-link="editobservation"
-              >Edit Obseravation</ion-button
+              ><ion-icon :icon="barbell" style="font-size: 5em" />Edit
+              Obseravation</ion-button
             >
           </ion-col>
         </ion-row>
@@ -39,6 +41,7 @@ import {
   IonTitle,
   IonContent,
 } from "@ionic/vue";
+import { barbell, people } from "ionicons/icons";
 
 import { defineComponent } from "vue";
 </script>
@@ -47,5 +50,15 @@ import { defineComponent } from "vue";
 ion-col {
   color: #fff;
   text-align: center;
+}
+ion-button {
+  width: 100%;
+  height: 200px;
+  margin: auto;
+}
+.center {
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 </style>
