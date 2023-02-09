@@ -135,9 +135,12 @@ onMounted(async () => {
   child.value = await getChildById(+id);
   let allObservations = await getObservations();
   let age = differenceInMonths(new Date(child.value.birthdate), new Date());
+  let nextHigherAge = nextHigherNumber(age, allObservations.map(obs => obs.expectedAtMonths));
+  console.log(nextHigherAge)
   allObservations = allObservations.filter(
-    (obs) => obs.expectedAtMonths <= age
+    (obs) => obs.expectedAtMonths <= nextHigherAge
   );
+
   observations.value = allObservations;
   let categoryStrings = observations.value.map(
     (observation) => observation.category
@@ -154,6 +157,16 @@ function differenceInMonths(d1: Date, d2: Date): number {
   months -= d1.getMonth();
   months += d2.getMonth();
   return months <= 0 ? 0 : months;
+}
+
+function nextHigherNumber(nr: number, numbers: number[]): number {
+  let nextHigher = 9999;
+  for (const number of numbers) {
+    if(number > nr && number < nextHigher) {
+      nextHigher = number;
+    }
+  }
+  return nextHigher;
 }
 
 async function completeObservation(
@@ -179,7 +192,8 @@ function getChildObservationPercent(category: string): string {
     .filter((co) => co?.observation.category === category)
     .reduce((sum, current) => sum + current.points, 0);
 
-  return (relevantChildObservations / relevantObservations) * 100 + '%';
+  let percent = (relevantChildObservations / relevantObservations) * 100;
+  return Math.round(percent * 100) / 100 + '%';
 }
 
 function observationCompleted(observation: Observation): boolean {
