@@ -1,10 +1,7 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Blueberry Settings / Edit Observation</ion-title>
-      </ion-toolbar>
-    </ion-header>
+        <PageDefaultHeader myTitle="Blueberry Settings / Edit Observation"/>
+
     <ion-content class="ion-padding">
       <ion-item-group v-for="category of allCategories" :key="category">
         <ion-item-divider>
@@ -141,7 +138,7 @@ import {
   IonContent,
 } from "@ionic/vue";
 import { pencil, trash } from "ionicons/icons";
-
+import PageDefaultHeader from "@/components/PageDefaultHeader.vue";
 import { Observation } from "../model/model";
 import { createObservation, getObservations } from "../api/backend";
 import { ref } from "vue";
