@@ -29,7 +29,7 @@
           >
             <p>
               <ion-label slot="start" position="stacked"
-                >{{ observation.text }}
+                >{{ `${observation.text} (expexted at ${observation.expectedAtMonths} months)` }}
               </ion-label>
             </p>
             <p>
@@ -124,10 +124,6 @@ import { ref } from 'vue';
 import { useRoute } from 'vue-router';
 
 let child = ref<Child>({} as Child);
-onMounted(async () => {
-  child.value = await getChildById(+id);
-});
-
 const route = useRoute();
 
 const id = route.params.id;
@@ -141,7 +137,11 @@ let points: number;
 let comment: string;
 
 onMounted(async () => {
-  observations.value = await getObservations();
+  child.value = await getChildById(+id);
+  let allObservations = await getObservations();
+  let age = differenceInMonths(new Date(child.value.birthdate), new Date())
+  allObservations = allObservations.filter(obs => obs.expectedAtMonths <= age);
+  observations.value = allObservations;
   let categoryStrings = observations.value.map(
     (observation) => observation.category
   );
@@ -151,6 +151,13 @@ onMounted(async () => {
   categories.value = categoryStrings;
   childObservations.value = await getChildObservationsById(+id);
 });
+
+function differenceInMonths(d1: Date, d2: Date): number {
+  let months = (d2.getFullYear() - d1.getFullYear()) * 12;
+  months -= d1.getMonth();
+  months += d2.getMonth();
+  return months <= 0 ? 0 : months;
+}
 
 async function completeObservation(
   child: Child,
