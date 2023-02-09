@@ -1,5 +1,7 @@
 package ch.zhaw.blueberry2.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.util.ArrayList;
@@ -14,7 +16,7 @@ public class Observation {
     private int expectedAtMonths;
     private String category;
     private String text;
-
+    @JsonIgnore
     @OneToMany(mappedBy = "observation")
     private List<ChildObservation> childObservations;
 

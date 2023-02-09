@@ -49,6 +49,14 @@ export async function createObservation(
     return response.data;
 }
 
+export async function getChildObservations(): Promise<ChildObservation[]> {
+    const response = await axios.get(CHILD_OBSERVATION_API);
+    if (response.data?.length > 0) {
+        return response.data;
+    }
+    return [];
+}
+
 export async function getChildObservationsById(childId: number): Promise<ChildObservation[]> {
     let response = await axios.get(CHILDREN_API + '/' + childId + CHILD_OBSERVATION_SUFFIX);
     let childObservations = response.data._embedded.childObservations;
@@ -60,7 +68,15 @@ export async function getChildObservationsById(childId: number): Promise<ChildOb
 }
 
 export async function createChildObservation(child: Child, observation: Observation, points: number, comment: string): Promise<void> {
-    axios.post(CHILD_OBSERVATION_API + '?points=' + points + '&comment=' + comment, {
+    points = points !== 1 && points !== 2 ? 0 : points;
+    let url = '';
+    if (comment) {
+        url = CHILD_OBSERVATION_API + '?points=' + points + '&comment=' + comment;
+    } else {
+        url = CHILD_OBSERVATION_API + '?points=' + points;
+    }
+
+    axios.post(url, {
         childId: child.id,
         observationId: observation.id
     } as ChildObservationKey);

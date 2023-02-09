@@ -2,11 +2,11 @@ delete from child_observation;
 delete from child;
 delete from observation;
 
-INSERT INTO child (birthdate, entry_date, first_name, gender, name, nationality) VALUES ('2021-02-01', '2023-02-01', 'Pascal', 1, 'Strebel', 'AUT');
-INSERT INTO child (birthdate, entry_date, first_name, gender, name, nationality) VALUES ('2020-02-01', '2023-02-01', 'Aron', 1, 'Halef', 'IT');
-INSERT INTO child (birthdate, entry_date, first_name, gender, name, nationality) VALUES ('2021-08-01', '2023-02-01', 'Adrian', 2, 'Brunner', 'CH');
-INSERT INTO child (birthdate, entry_date, first_name, gender, name, nationality) VALUES ('2019-10-01', '2023-02-01', 'Britney', 2, 'Spears', 'US');
-INSERT INTO child (birthdate, entry_date, first_name, gender, name, nationality) VALUES ('2021-07-01', '2023-02-01', 'Shanaia', 2, 'Twain', 'CA');
+INSERT INTO child (birthdate, entry_date, first_name, gender, name, nationality) VALUES ('2021-02-01', '2023-02-01', 'Pascal', 0, 'Strebel', 'AUT');
+INSERT INTO child (birthdate, entry_date, first_name, gender, name, nationality) VALUES ('2020-02-01', '2023-02-01', 'Aron', 0, 'Halef', 'IT');
+INSERT INTO child (birthdate, entry_date, first_name, gender, name, nationality) VALUES ('2021-08-01', '2023-02-01', 'Adrian', 0, 'Brunner', 'CH');
+INSERT INTO child (birthdate, entry_date, first_name, gender, name, nationality) VALUES ('2019-10-01', '2023-02-01', 'Britney', 1, 'Spears', 'US');
+INSERT INTO child (birthdate, entry_date, first_name, gender, name, nationality) VALUES ('2021-07-01', '2023-02-01', 'Shanaia', 1, 'Twain', 'CA');
 
 INSERT INTO observation (category, expected_at_months, text) VALUES ('Movement', 36, 'Can ride a tricycle');
 INSERT INTO observation (category, expected_at_months, text) VALUES ('Movement', 36, 'Can jump off with both legs');

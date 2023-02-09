@@ -1,5 +1,7 @@
 package ch.zhaw.blueberry2.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+
 import javax.persistence.*;
 
 import java.time.LocalDate;
@@ -19,6 +21,7 @@ public class Child {
     private String nationality;
     private LocalDate entryDate;
     private Gender gender;
+    @JsonIgnore
     @OneToMany(mappedBy="child")
     private List<ChildObservation> childObservations;
 

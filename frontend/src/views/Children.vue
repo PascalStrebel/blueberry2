@@ -5,16 +5,19 @@
         <ion-title>Blueberry Children</ion-title>
       </ion-toolbar>
       <ion-toolbar>
-        <ion-searchbar @change="searchStringChange($event)"
-                       placeholder="Search Blueberry.."></ion-searchbar>
+        <ion-searchbar
+          @input="searchStringChange($event)"
+          placeholder="Search Blueberry.."
+        ></ion-searchbar>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
       <h1>Content</h1>
       <ion-card
-          :router-link="'/tabs/children/' + child.id"
-          :key="child.id"
-          v-for="child in children"
+        :style="{ '--background': getCardColor(child) }"
+        :router-link="'/tabs/children/' + child.id"
+        :key="child.id"
+        v-for="child in children"
       >
         <ion-card-header>
           <ion-card-title>
@@ -35,9 +38,10 @@
 </template>
 
 <script setup lang="ts">
-import {onMounted} from '@vue/runtime-core';
-import {getChildren} from '@/api/backend';
-import {Child} from '@/model/model';
+import { onMounted } from '@vue/runtime-core';
+import { getChildren } from '@/api/backend';
+import { getCardColor } from '@/style/cardColor';
+import { Child } from '@/model/model';
 import {
   IonCard,
   IonCardContent,
@@ -51,7 +55,7 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/vue';
-import {ref} from 'vue';
+import { ref } from 'vue';
 
 let children = ref<Child[]>([]);
 let allChildren: Child[];
@@ -61,11 +65,14 @@ onMounted(async () => {
 });
 
 function searchStringChange(event: any): void {
-  console.log(event.target.value)
   if (event.target.value.length === 0) {
     children.value = allChildren;
   } else {
-    children.value = allChildren.filter(child => JSON.stringify(child).toLowerCase().includes(event.target.value.toLowerCase()));
+    children.value = allChildren.filter((child) =>
+      JSON.stringify(child)
+        .toLowerCase()
+        .includes(event.target.value.toLowerCase())
+    );
   }
 }
 </script>

@@ -1,10 +1,6 @@
 <template>
   <ion-page>
-    <ion-header>
-      <ion-toolbar>
-        <ion-title>Create Observation</ion-title>
-      </ion-toolbar>
-    </ion-header>
+    <PageDefaultHeader myTitle="Create Observation"/>
     <ion-content :fullscreen="true">
       <ion-header collapse="condense">
         <ion-toolbar>
@@ -34,6 +30,7 @@
 import { IonPage, IonHeader, IonToolbar, IonTitle, IonContent, IonButton, IonLabel, IonInput, IonItem } from '@ionic/vue';
 import {Observation} from "../model/model";
 import {createObservation} from "../api/backend";
+import PageDefaultHeader from "@/components/PageDefaultHeader.vue";
 
 const observation = {} as Observation;
 
