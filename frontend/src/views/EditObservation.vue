@@ -167,7 +167,7 @@ onMounted(async () => {
 
 function createANewOberservation() {
   createObservation(observations);
-  //document.location.reload();
+  document.location.reload();
 }
 
 const deleteSpecificObservation = async (
