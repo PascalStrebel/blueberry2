@@ -25,14 +25,9 @@
             {{ child.firstName }} {{ child.name }}
           </ion-card-title>
           <ion-card-subtitle>
-            {{ child.birthdate }}
+            Geboren am: {{ moment(child.birthdate).format('DD.MM.YYYY') }}
           </ion-card-subtitle>
         </ion-card-header>
-
-        <ion-card-content>
-          Here's a small text description for the card content. Nothing more,
-          nothing less.
-        </ion-card-content>
       </ion-card>
     </ion-content>
   </ion-page>
@@ -57,6 +52,7 @@ import {
   IonToolbar,
 } from '@ionic/vue';
 import { ref } from 'vue';
+import moment from 'moment';
 
 let children = ref<Child[]>([]);
 let allChildren: Child[];
