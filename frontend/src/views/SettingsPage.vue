@@ -20,6 +20,11 @@
               >Edit Obseravation</ion-button
             >
           </ion-col>
+                    <ion-col>
+            <ion-button expand="block" router-link="editobservation"
+              >Edit Obseravation</ion-button
+            >
+          </ion-col>
         </ion-row>
       </ion-grid>
     </ion-content>

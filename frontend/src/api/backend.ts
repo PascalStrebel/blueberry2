@@ -32,6 +32,11 @@ export async function deleteChild(id: number): Promise<Child[]> {
     return response.data;
 }
 
+export async function deleteObservation(id: number): Promise<Observation[]> {
+    const response = await axios.delete(OBSERVATION_API + '/' + id);
+    return response.data;
+}
+
 export async function getObservationById(id: number): Promise<Observation> {
     const response = await axios.get(OBSERVATION_API + '/' + id);
     return response.data;
