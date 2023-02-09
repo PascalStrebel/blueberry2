@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-        <PageDefaultHeader myTitle="Blueberry Settings / Edit Observation"/>
+    <PageDefaultHeader myTitle="Blueberry Settings / Edit Observation" />
 
     <ion-content class="ion-padding">
       <ion-item-group v-for="category of allCategories" :key="category">
@@ -14,7 +14,10 @@
           )"
           :key="observation"
         >
-          <ion-label>&lt; {{observation.expectedAtMonths}} months | {{ observation.text }} </ion-label>
+          <ion-label
+            >&lt; {{ observation.expectedAtMonths }} months |
+            {{ observation.text }}
+          </ion-label>
           <div id="editbuttons">
             <ion-label>
               <ion-tab-button
@@ -41,44 +44,14 @@
         </ion-item>
       </ion-item-group>
 
-      <!-- <ion-list>
-        <ion-item
-          slot="content"
-          v-for="observation of existingObservations"
-          :key="observation.id"
-        >
-          <ion-label>{{ observation.category }}</ion-label>
-          <ion-label>{{ observation.text }}</ion-label>
-          <div id="editbuttons">
-            <ion-label>
-              <ion-tab-button
-                tab="edit"
-                @click="editSpecificObservation(observation)"
-              >
-                <ion-icon :icon="pencil" />
-              </ion-tab-button>
-            </ion-label>
-            <ion-label>
-              <ion-tab-button
-                @click="
-                  deleteSpecificObservation(
-                    observation.id,
-                    observation.category,
-                    observation.text
-                  )
-                "
-              >
-                <ion-icon :icon="trash" />
-              </ion-tab-button>
-            </ion-label>
-          </div>
-        </ion-item>
-      </ion-list> -->
-
-      <ion-button class="modalbutton" id="open-modal" expand="block">
+      <ion-button
+        class="modalbuttonforobservation"
+        id="open-modal-observation"
+        expand="block"
+      >
         Add a new observation
       </ion-button>
-      <ion-modal ref="modal" trigger="open-modal">
+      <ion-modal ref="modal" trigger="open-modal-observation">
         <ion-header>
           <ion-toolbar>
             <ion-buttons slot="start">
@@ -93,10 +66,18 @@
           </ion-toolbar>
         </ion-header>
         <ion-item>
-
-
-          <ion-label position="stacked">Category</ion-label>
-          <ion-input v-model="observations.category" required="true" />
+          <ion-select
+            interface="popover"
+            placeholder="Category"
+            v-model="observations.category"
+            required
+          >
+            <ion-select-option
+              v-for="category of allCategories"
+              :key="category"
+              >{{ category }}</ion-select-option
+            >
+          </ion-select>
         </ion-item>
 
         <ion-item>
@@ -164,6 +145,7 @@ onMounted(async () => {
 
 function createANewOberservation() {
   createObservation(observations);
+
   document.location.reload();
 }
 
@@ -173,7 +155,7 @@ const deleteSpecificObservation = async (
   text: string
 ) => {
   const alert = await alertController.create({
-    header: "You sure you wanna delete \"" + text + "\" ?",
+    header: 'You sure you wanna delete "' + text + '" ?',
     buttons: [
       {
         text: "Cancel",
@@ -200,7 +182,7 @@ function editSpecificObservation(observation: Observation) {
   //alert("Value 1: " + children.name + "\nValue 2: " + children.firstName);
 
   let element: HTMLElement = document.getElementsByClassName(
-    "modalbutton"
+    "modalbuttonforobservation"
   )[0] as HTMLElement;
   element.click();
 }

@@ -1,6 +1,6 @@
 <template>
   <ion-page>
-    <PageDefaultHeader myTitle="Blueberry Settings / Edit Children"/>
+    <PageDefaultHeader myTitle="Blueberry Settings / Edit Children" />
     <ion-content class="ion-padding">
       <ion-list>
         <ion-item
@@ -29,10 +29,14 @@
         </ion-item>
       </ion-list>
 
-      <ion-button class="modalbutton" id="open-modal" expand="block">
+      <ion-button
+        class="modalbuttonforchildren"
+        id="open-modal-children"
+        expand="block"
+      >
         Add a new child
       </ion-button>
-      <ion-modal ref="modal" trigger="open-modal">
+      <ion-modal ref="modal" trigger="open-modal-children">
         <ion-header>
           <ion-toolbar>
             <ion-buttons slot="start">
@@ -63,6 +67,7 @@
         <ion-item>
           <ion-label position="stacked">Gender</ion-label>
           <ion-select
+            interface="popover"
             placeholder="Select Gender"
             v-model="children.gender"
             required
@@ -167,7 +172,7 @@ function editSpecificChild(child: Child) {
   //alert("Value 1: " + children.name + "\nValue 2: " + children.firstName);
 
   let element: HTMLElement = document.getElementsByClassName(
-    "modalbutton"
+    "modalbuttonforchildren"
   )[0] as HTMLElement;
   element.click();
 }
@@ -187,10 +192,7 @@ ion-modal {
   --box-shadow: 0 28px 48px rgba(0, 0, 0, 0.4);
 }
 
-#editbuttons ion-label  {
+#editbuttons ion-label {
   padding: 8px;
-
 }
-
-
 </style>
