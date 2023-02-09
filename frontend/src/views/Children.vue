@@ -5,15 +5,16 @@
         <ion-title>Blueberry Children</ion-title>
       </ion-toolbar>
       <ion-toolbar>
-        <ion-searchbar placeholder="Search Blueberry.."></ion-searchbar>
+        <ion-searchbar @change="searchStringChange($event)"
+                       placeholder="Search Blueberry.."></ion-searchbar>
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
       <h1>Content</h1>
       <ion-card
-        :router-link="'/tabs/children/' + child.id"
-        :key="child.id"
-        v-for="child in children"
+          :router-link="'/tabs/children/' + child.id"
+          :key="child.id"
+          v-for="child in children"
       >
         <ion-card-header>
           <ion-card-title>
@@ -34,29 +35,39 @@
 </template>
 
 <script setup lang="ts">
-import PageDefaultHeader from '../components/PageDefaultHeader.vue';
-import { onMounted } from '@vue/runtime-core';
-import { getChildren } from '@/api/backend';
-import { Child } from '@/model/model';
+import {onMounted} from '@vue/runtime-core';
+import {getChildren} from '@/api/backend';
+import {Child} from '@/model/model';
 import {
-  IonToolbar,
-  IonSearchbar,
-  IonTitle,
-  IonHeader,
   IonCard,
   IonCardContent,
   IonCardHeader,
   IonCardSubtitle,
   IonCardTitle,
   IonContent,
+  IonHeader,
   IonPage,
+  IonSearchbar,
+  IonTitle,
+  IonToolbar,
 } from '@ionic/vue';
-import { ref } from 'vue';
+import {ref} from 'vue';
 
 let children = ref<Child[]>([]);
+let allChildren: Child[];
 onMounted(async () => {
-  children.value = await getChildren();
+  allChildren = await getChildren();
+  children.value = allChildren;
 });
+
+function searchStringChange(event: any): void {
+  console.log(event.target.value)
+  if (event.target.value.length === 0) {
+    children.value = allChildren;
+  } else {
+    children.value = allChildren.filter(child => JSON.stringify(child).toLowerCase().includes(event.target.value.toLowerCase()));
+  }
+}
 </script>
 
 <style scoped>
@@ -70,6 +81,7 @@ ion-card {
   width: 30%;
   display: inline-block;
 }
+
 @media (max-width: 768px) {
   ion-card {
     width: 100%;
