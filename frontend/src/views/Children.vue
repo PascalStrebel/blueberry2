@@ -12,23 +12,26 @@
       </ion-toolbar>
     </ion-header>
     <ion-content class="ion-padding">
-      <h1>Content</h1>
-      <ion-card
-        button
-        :style="{ '--background': getCardColor(child) }"
-        :router-link="'/tabs/children/' + child.id"
-        :key="child.id"
-        v-for="child in children"
-      >
-        <ion-card-header>
-          <ion-card-title>
-            {{ child.firstName }} {{ child.name }}
-          </ion-card-title>
-          <ion-card-subtitle>
-            Geboren am: {{ moment(child.birthdate).format('DD.MM.YYYY') }}
-          </ion-card-subtitle>
-        </ion-card-header>
-      </ion-card>
+      <div class="card-container">
+        <ion-card
+          class="same-height"
+          button
+          :style="{ '--background': getCardColor(child) }"
+          :router-link="'/tabs/children/' + child.id"
+          :key="child.id"
+          v-for="child in children"
+        >
+          <ion-card-header>
+            <ion-card-title>
+              {{ child.firstName }} {{ child.name }}
+            </ion-card-title>
+            <ion-card-subtitle>
+              <b>Birthdate:</b>
+              {{ moment(child.birthdate).format('DD.MM.YYYY') }}
+            </ion-card-subtitle>
+          </ion-card-header>
+        </ion-card>
+      </div>
     </ion-content>
   </ion-page>
 </template>

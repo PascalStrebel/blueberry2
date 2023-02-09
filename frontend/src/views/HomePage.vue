@@ -1,11 +1,11 @@
 <template>
   <ion-page>
-    <PageDefaultHeader myTitle="Blueberry Home" />
+    <PageDefaultHeader myTitle="Blueberry Blog" />
 
     <ion-content :fullscreen="true">
       <div class="card-container">
         <ion-card
-          clas="same-height"
+          class="same-height"
           :style="{ '--background': getCardColorHomePage(childObs) }"
           :key="childObs.id"
           v-for="childObs in childObservations"

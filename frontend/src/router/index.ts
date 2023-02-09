@@ -11,7 +11,7 @@ import ChildDetail from '../views/ChildDetail.vue';
 const routes: Array<RouteRecordRaw> = [
   {
     path: '/',
-    redirect: '/tabs/home',
+    redirect: '/tabs/children',
   },
   {
     path: '/tabs/',
@@ -19,10 +19,10 @@ const routes: Array<RouteRecordRaw> = [
     children: [
       {
         path: '',
-        redirect: '/tabs/home',
+        redirect: '/tabs/children',
       },
       {
-        path: 'home',
+        path: 'blog',
         component: () => import('@/views/HomePage.vue'),
       },
       {
