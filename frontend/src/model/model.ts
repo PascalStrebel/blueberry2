@@ -1,6 +1,6 @@
 /* tslint:disable */
 /* eslint-disable */
-// Generated using typescript-generator version 3.1.1185 on 2023-02-08 20:24:26.
+// Generated using typescript-generator version 3.1.1185 on 2023-02-09 10:10:20.
 
 export interface Child {
     id: number;
@@ -10,7 +10,6 @@ export interface Child {
     nationality: string;
     entryDate: Date;
     gender: Gender;
-    childObservations: ChildObservation[];
 }
 
 export interface ChildObservation {
@@ -38,7 +37,6 @@ export interface Observation {
     expectedAtMonths: number;
     category: string;
     text: string;
-    childObservations: ChildObservation[];
 }
 
 export interface ObservationRepository extends JpaRepository<Observation, number> {
