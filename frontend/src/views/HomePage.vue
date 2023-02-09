@@ -4,6 +4,7 @@
 
     <ion-content :fullscreen="true">
       <ion-card
+          :style="{ '--background': getCardColorHomePage(childObs) }"
           :key="childObs.id"
           v-for="childObs in childObservations"
       >
@@ -36,6 +37,7 @@ import {ref} from "vue";
 import {ChildObservation} from "@/model/model";
 import {onMounted} from "@vue/runtime-core";
 import {getChildObservations} from "@/api/backend";
+import {getCardColor, getCardColorHomePage} from "@/style/cardColor";
 
 let childObservations = ref<ChildObservation[]>([]);
 onMounted(async () => {

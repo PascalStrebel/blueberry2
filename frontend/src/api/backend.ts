@@ -63,6 +63,7 @@ export async function getChildObservationsById(childId: number): Promise<ChildOb
 }
 
 export async function createChildObservation(child: Child, observation: Observation, points: number, comment: string): Promise<void> {
+    points = points !== 1 && points !== 2 ? 0 : points;
     let url = '';
     if (comment) {
         url = CHILD_OBSERVATION_API + '?points=' + points + '&comment=' + comment;
