@@ -51,6 +51,7 @@ import {
   IonTitle,
   IonToolbar,
 } from '@ionic/vue';
+import { person } from 'ionicons/icons';
 import { ref } from 'vue';
 import moment from 'moment';
 
@@ -95,5 +96,13 @@ ion-card:hover {
     width: 100%;
     display: block;
   }
+}
+.same-height {
+  flex-basis: calc(33.33% - 20px);
+  margin: 10px;
+}
+.card-container {
+  display: flex;
+  flex-wrap: wrap;
 }
 </style>
