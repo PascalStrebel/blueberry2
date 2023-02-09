@@ -119,7 +119,6 @@ import { deleteChild } from "../api/backend";
 import { IonSelectOption, alertController } from "@ionic/vue";
 import { OverlayEventDetail } from "@ionic/core/components";
 import { defineComponent } from "vue";
-import PageDefaultHeader from "@/components/PageDefaultHeader.vue";
 
 let children = {} as Child;
 
